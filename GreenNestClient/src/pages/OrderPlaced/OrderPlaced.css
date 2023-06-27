@@ -1,0 +1,39 @@
+.bgRed {
+  background-color: red;
+}
+.bgGreen {
+  background-color: var(--primary);
+}
+.orderPlacedContainer {
+  /* height: 1vh; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  /* background: lime; */
+}
+.orderMSG {
+  text-align: center;
+  position: relative;
+  font-size: 1.8rem;
+  top: 50%;
+  color: var(--secondary);
+  -webkit-animation: fadein 1s;
+}
+.orderIcon {
+  font-size: 4.5rem;
+  margin-top: 6%;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    /* font-size:0px; */
+  }
+  to {
+    opacity: 1;
+    /* font-size: 1.8rem; */
+  }
+}

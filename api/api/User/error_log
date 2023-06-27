@@ -1,0 +1,103 @@
+[05-Nov-2022 04:46:56 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/greenlan/public_html/api/objects/product.php:57
+Stack trace:
+#0 /home/greenlan/public_html/api/User/getProductList.php(12): Product->getProductList()
+#1 {main}
+  thrown in /home/greenlan/public_html/api/objects/product.php on line 57
+[05-Nov-2022 04:48:55 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home/greenlan/public_html/api/objects/product.php:57
+Stack trace:
+#0 /home/greenlan/public_html/api/User/getProductList.php(12): Product->getProductList()
+#1 {main}
+  thrown in /home/greenlan/public_html/api/objects/product.php on line 57
+[29-Nov-2022 02:36:09 UTC] PHP Parse error:  syntax error, unexpected 'print_r' (T_STRING) in /home/greenlan/public_html/api/User/createUser.php on line 15
+[29-Nov-2022 02:36:15 UTC] PHP Parse error:  syntax error, unexpected 'print_r' (T_STRING) in /home/greenlan/public_html/api/User/createUser.php on line 15
+[29-Nov-2022 02:36:23 UTC] PHP Parse error:  syntax error, unexpected 'print_r' (T_STRING) in /home/greenlan/public_html/api/User/createUser.php on line 15
+[29-Nov-2022 02:36:48 UTC] PHP Parse error:  syntax error, unexpected 'print_r' (T_STRING) in /home/greenlan/public_html/api/User/createUser.php on line 15
+[29-Nov-2022 02:49:05 UTC] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/greenlan/public_html/api/User/createUser.php on line 14
+[29-Nov-2022 02:55:34 UTC] PHP Parse error:  syntax error, unexpected '$this' (T_VARIABLE) in /home/greenlan/public_html/api/objects/User.php on line 26
+[29-Nov-2022 06:32:40 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method User::isAlreadyExist() in /home/greenlan/public_html/api/objects/User.php:21
+Stack trace:
+#0 /home/greenlan/public_html/api/User/createUser.php(19): User->insertUser()
+#1 {main}
+  thrown in /home/greenlan/public_html/api/objects/User.php on line 21
+[29-Nov-2022 06:33:42 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method User::isAlreadyExist() in /home/greenlan/public_html/api/objects/User.php:21
+Stack trace:
+#0 /home/greenlan/public_html/api/User/createUser.php(19): User->insertUser()
+#1 {main}
+  thrown in /home/greenlan/public_html/api/objects/User.php on line 21
+[29-Nov-2022 06:34:18 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method User::isAlreadyExist() in /home/greenlan/public_html/api/objects/User.php:21
+Stack trace:
+#0 /home/greenlan/public_html/api/User/createUser.php(20): User->insertUser()
+#1 {main}
+  thrown in /home/greenlan/public_html/api/objects/User.php on line 21
+[29-Nov-2022 06:36:33 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method User::isAlreadyExist() in /home/greenlan/public_html/api/objects/User.php:21
+Stack trace:
+#0 /home/greenlan/public_html/api/User/createUser.php(20): User->insertUser()
+#1 {main}
+  thrown in /home/greenlan/public_html/api/objects/User.php on line 21
+[29-Nov-2022 06:44:09 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method User::isAlreadyExist() in /home/greenlan/public_html/api/objects/User.php:21
+Stack trace:
+#0 /home/greenlan/public_html/api/User/createUser.php(20): User->insertUser()
+#1 {main}
+  thrown in /home/greenlan/public_html/api/objects/User.php on line 21
+[29-Nov-2022 06:44:11 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method User::isAlreadyExist() in /home/greenlan/public_html/api/objects/User.php:21
+Stack trace:
+#0 /home/greenlan/public_html/api/User/createUser.php(20): User->insertUser()
+#1 {main}
+  thrown in /home/greenlan/public_html/api/objects/User.php on line 21
+[01-Dec-2022 02:53:14 UTC] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/greenlan/public_html/api/User/checkOut.php on line 22
+[01-Dec-2022 02:53:42 UTC] PHP Parse error:  syntax error, unexpected '}', expecting ';' in /home/greenlan/public_html/api/objects/order.php on line 45
+[01-Dec-2022 02:53:48 UTC] PHP Parse error:  syntax error, unexpected '}', expecting ';' in /home/greenlan/public_html/api/objects/order.php on line 45
+[01-Dec-2022 02:55:36 UTC] PHP Parse error:  syntax error, unexpected '}', expecting ';' in /home/greenlan/public_html/api/objects/order.php on line 45
+[01-Dec-2022 02:56:01 UTC] PHP Notice:  Undefined index: user_id in /home/greenlan/public_html/api/User/checkOut.php on line 15
+[01-Dec-2022 08:26:01 Asia/Kolkata] PHP Warning:  Use of undefined constant orderPlaced - assumed 'orderPlaced' (this will throw an Error in a future version of PHP) in /home/greenlan/public_html/api/User/checkOut.php on line 29
+[01-Dec-2022 02:58:00 UTC] PHP Notice:  Undefined index: user_id in /home/greenlan/public_html/api/User/checkOut.php on line 15
+[01-Dec-2022 03:45:18 UTC] PHP Notice:  Undefined index: address in /home/greenlan/public_html/api/User/checkOut.php on line 16
+[02-Dec-2022 14:06:05 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Order::singleOneOrderDetails() in /home/greenlan/public_html/api/User/getOrder.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/greenlan/public_html/api/User/getOrder.php on line 15
+[02-Dec-2022 14:06:23 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Order::singleOneOrderDetails() in /home/greenlan/public_html/api/User/getOrder.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/greenlan/public_html/api/User/getOrder.php on line 15
+[05-Dec-2022 18:34:11 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:34:13 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:34:17 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:34:18 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:34:18 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:34:19 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:34:19 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:34:35 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:34:36 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:34:37 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:34:37 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:34:37 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:34:37 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:34:38 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:34:38 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:34:42 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:34:43 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:34:43 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:34:43 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:34:44 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:34:44 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:35:31 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:37:40 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:40:37 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:41:58 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:45:09 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:51:23 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:52:33 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 18:56:47 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 43
+[05-Dec-2022 19:03:24 Asia/Kolkata] PHP Notice:  Undefined property: Order::$totelAmount in /home/greenlan/public_html/api/objects/order.php on line 44
+[05-Dec-2022 15:26:15 UTC] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/greenlan/public_html/api/User/checkOut.php on line 31
+[05-Dec-2022 15:26:20 UTC] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/greenlan/public_html/api/User/checkOut.php on line 31
+[05-Dec-2022 15:29:45 UTC] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/greenlan/public_html/api/User/checkOut.php on line 31
+[05-Dec-2022 15:30:40 UTC] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/greenlan/public_html/api/User/checkOut.php on line 31
+[05-Dec-2022 21:03:00 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Call to undefined method User::updateAddress() in /home/greenlan/public_html/api/User/checkOut.php:33
+Stack trace:
+#0 {main}
+  thrown in /home/greenlan/public_html/api/User/checkOut.php on line 33
+[12-Jan-2023 12:32:33 Asia/Kolkata] PHP Notice:  Undefined index: address in /home/greenlan/public_html/api/User/checkOut.php on line 28
+[12-Jan-2023 12:32:36 Asia/Kolkata] PHP Notice:  Undefined index: address in /home/greenlan/public_html/api/User/checkOut.php on line 28
+[12-Jan-2023 12:39:45 Asia/Kolkata] PHP Notice:  Undefined index: address in /home/greenlan/public_html/api/User/checkOut.php on line 28

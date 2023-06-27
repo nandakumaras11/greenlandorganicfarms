@@ -1,0 +1,9 @@
+.productListContainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  column-gap: 3%;
+  justify-content:flex-start;
+  align-items: baseline;
+  padding: 0% 4%;
+}
