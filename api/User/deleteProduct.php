@@ -1,4 +1,4 @@
-<!-- deleteProduct.php -->
+
 <?php
   header('Access-Control-Allow-Origin: *');  
   // get database connection

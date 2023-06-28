@@ -32,7 +32,7 @@ function API_JSON(url, data, successCallBack) {
 $("#saveProduct").click(function (e) {
     e.preventDefault();
     API('User/createProduct.php', new FormData($("#my_form")[0]), (result) => {
-        console.log(result)
+        // console.log(result)
         // location.reload();
         humanReadMsg(result.message);
         getProduct();
@@ -43,7 +43,7 @@ $("#saveProduct").click(function (e) {
 var allProducts = [];
 
 let getProduct = () => {
-    $("#productTable").dataTable().fnDestroy();
+    $("#productTable").dataTable();
     return new Promise((resolve, reject) => {
 
 
@@ -59,7 +59,7 @@ let getProduct = () => {
             $(".deleteProduct").unbind().click(function (e) {
                 e.preventDefault();
                 var product_id = this.getAttribute("id");
-                API_JSON("User/deleteProduct.php", { 'product_id': product_id }, getProduct)
+                API_JSON("User/deleteProduct.php", { 'product_id': product_id }, getProduct())
             });
             $(".editProduct").click(function (e) {
                 e.preventDefault();
@@ -100,7 +100,7 @@ $("#editProduct").click(function (e) {
     e.preventDefault();
     API('User/updateProduct.php', new FormData($("#my_form")[0]), (result) => {
         // console.log(result)
-        // location.reload();
+        location.reload();
         humanReadMsg(result.message);
         getProduct();
 
