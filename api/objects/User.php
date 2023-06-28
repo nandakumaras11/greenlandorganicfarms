@@ -36,7 +36,7 @@ class User
     }
     public function authentication()
     {
-        $query = "SELECT "."phone_no,password"." FROM " . $this->table_name . " WHERE phone_no='" . $this->signInMobile . "' AND password='" . $this->signInPassword . "'";
+        $query = "SELECT * FROM " . $this->table_name . " WHERE phone_no='" . $this->signInMobile . "' AND password='" . $this->signInPassword . "'";
         // print_r($query);
         
         $stmt = $this->conn->prepare($query);

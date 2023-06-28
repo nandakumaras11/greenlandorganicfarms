@@ -15,12 +15,15 @@ $newUser->signInPassword=md5($data['signInPassword']);
 // $newUser->username="aravind";
 // $newUser->password=md5("aravind123");
 
-		if($newUser->authentication() == 1){
+		if(!empty($newUser->authentication()) ){
 			$res_arr = array("status" 	=> "success","message" 	=> $newUser->authentication());
-		}else if($newUser->authentication() == 2){
+		}
+		else if(empty($newUser->authentication()))
+		{
 			$res_arr = array("status" 	=> "failed","message" 	=> $newUser->authentication());
-		}else{
-			$res_arr = array("status" 	=> "authentication was failed","message" 	=> $newUser->authentication());
+		}
+		else{
+			$res_arr = array("status" 	=> "authentication was failed","message"	=> $newUser->authentication());
 		}
 echo json_encode($res_arr);
 ?>
