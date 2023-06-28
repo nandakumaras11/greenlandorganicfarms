@@ -59,7 +59,10 @@ let getProduct = () => {
             $(".deleteProduct").unbind().click(function (e) {
                 e.preventDefault();
                 var product_id = this.getAttribute("id");
-                API_JSON("User/deleteProduct.php", { 'product_id': product_id }, getProduct())
+                API_JSON("User/deleteProduct.php", { 'product_id': product_id }, (result)=>{
+                    location.reload();
+                    // getProduct();
+                })
             });
             $(".editProduct").click(function (e) {
                 e.preventDefault();
