@@ -33,7 +33,7 @@ $("#saveProduct").click(function (e) {
     e.preventDefault();
     API('User/createProduct.php', new FormData($("#my_form")[0]), (result) => {
         // console.log(result)
-        // location.reload();
+        location.reload();
         humanReadMsg(result.message);
         getProduct();
 
