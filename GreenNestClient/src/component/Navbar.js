@@ -115,7 +115,7 @@ const Navbar = () => {
           ],
         },
         {
-          id: 17,
+          id: 18,
           name: "FAQ",
           children: [
             {

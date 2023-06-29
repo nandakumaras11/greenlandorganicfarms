@@ -45,9 +45,10 @@ var allProducts = [];
 let getProduct = () => {
     $("#productTable").dataTable();
     return new Promise((resolve, reject) => {
-
-
+        // productTableBody
+        
         API("User/getProductList.php", {}, (response) => {
+            
             allProducts = response;
             // console.log(re)
             $("#productTableBody").empty();
@@ -155,7 +156,7 @@ let getOrderDetails = (products) => {
         // console.log(response);
         response.forEach(element => {
             // console.log(JSON.parse(element.product_id))
-            $("#orderTableBody").append("<tr style='font-size: 0.85em;'><td>{0}</td><td>{1}</td><td style=''>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td><i type='button' id='{0}'class='fa fa-pencil-square-o orderUpdateBtn' data-toggle='modal' data-target='#exampleModalCenter' ></i> {7} </td></tr>".format(element.order_id, element.phone_no, formatProductNameByID(element.product_id, products), element.totalAmount, element.dateOfOrder, element.transaction_id, element.paymentMode, element.status));
+            $("#orderTableBody").append("<tr style='font-size: 0.85em;'><td>{0}</td><td>{1}</td><td style='max-width: 50px;'>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td><i type='button' id='{0}'class='fa fa-pencil-square-o orderUpdateBtn' data-toggle='modal' data-target='#exampleModalCenter' ></i> {7} </td></tr>".format(element.order_id, element.phone_no, formatProductNameByID(element.product_id, products), element.totalAmount, element.dateOfOrder, element.transaction_id, element.paymentMode, element.status));
 
             count = count + 1;
         });
@@ -165,8 +166,13 @@ let getOrderDetails = (products) => {
             // $('#orderIdHiddenBox').val(order_id);
             API_JSON("User/selectOneOrder.php", { 'order_id': order_id }, (result) => {
                 // console.log(result.status);
-
+                if(result[0].orderMessage=="TRANSIST" || result[0].orderMessage=="DELIVERED")
+                {
+                    $('#orderMessage').val("");
+                }
+                else
                 $('#orderMessage').val(result[0].orderMessage);
+
                 $('#orderIdHiddenBox').val(result[0].order_id);
             });
 
