@@ -72,9 +72,10 @@ class Order
         // $query = "SELECT * FROM " . $this->table_name ."  order by user_id";
         // user_details phone_no
         // $query ="SELECT * FROM " . $this->table_name ." INNER JOIN user_details ON user_details.user_id = " . $this->table_name .".user_id order by " . $this->table_name .".;
-        // print_r($query);
-        $query ="SELECT * FROM ". $this->table_name ." INNER JOIN user_details ON user_details.user_id = " . $this->table_name .".".user_id ." order by  " . $this->table_name .".".user_id ."";
+        // print_r($query);SELECT column_name(s)FROM table1 INNER JOIN table2 ON table1.column_name = table2.column_name;
+        $query ="SELECT * FROM ". $this->table_name ." INNER JOIN user_details ON user_details.user_id = order_details.user_id order by order_details.order_id";
         // prepare query statement
+        // print_r($query);
         $stmt = $this->conn->prepare($query);
         // execute query
         $stmt->execute();
