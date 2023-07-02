@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import { store } from "./Store1/store";
 import { Provider } from "react-redux";
 import { CartProvider } from "react-use-cart";
@@ -19,6 +20,7 @@ root.render(
     </CartProvider>
   </Provider>
 );
+serviceWorkerRegistration.register();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

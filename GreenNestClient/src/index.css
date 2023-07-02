@@ -2,8 +2,17 @@
 
 body {
   margin: 0;
-  font-family: Outfit,sans-serif!important;
+  font-family: Outfit, sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+:root {
+  --containerPadding: 0 6%
+}
+
+@media (max-width: 768px) {
+  :root {
+    --containerPadding: 0 4%
+  }
+}
