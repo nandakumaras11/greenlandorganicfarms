@@ -22,6 +22,16 @@ function App() {
 
   return (
     <>
+      {/* <Helmet
+        titleAttributes={{ itemprop: "name" }}
+        htmlAttributes={{
+          itemscope: "",
+          itemtype: "http://schema.org/WebPage",
+        }}
+      >
+        <link rel="manifest" href="/manifest.webmanifest.json" />
+        <meta name="theme-color" content="#E53012">
+      </Helmet> */}
       <div className="container">
         <Navbar />
         <AllRoutes />
