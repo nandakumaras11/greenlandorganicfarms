@@ -11,6 +11,7 @@ class User
     public $signInMobile;
     public $signInPassword;
     public $userDetails;
+    // hello  hhh
     public function __construct($db)
     {
         $this->conn = $db;
@@ -21,10 +22,8 @@ class User
             return 2;
         } else {
             // return $this->isAlreadyExist();
-            $query = "INSERT INTO
-    " . $this->table_name . "(user_id,username,password,address,phone_no) VALUES
-    ('','" . $this->username . "','" . $this->password . "','" . $this->address . "','" . $this->phone_no . "')";
-
+            $query = "INSERT INTO   " . $this->table_name . "(user_id,username,password,address,phone_no) VALUES('','" . $this->username . "','" . $this->password . "','" . $this->address . "','" . $this->phone_no . "')";
+// print_r($query);
             $stmt = $this->conn->prepare($query);
 
             if ($stmt->execute()) {
@@ -37,7 +36,7 @@ class User
     }
     public function authentication()
     {
-        $query = "SELECT "."phone_no,password"." FROM " . $this->table_name . " WHERE phone_no='" . $this->signInMobile . "' AND password='" . $this->signInPassword . "'";
+        $query = "SELECT * FROM " . $this->table_name . " WHERE phone_no='" . $this->signInMobile . "' AND password='" . $this->signInPassword . "'";
         // print_r($query);
         
         $stmt = $this->conn->prepare($query);
@@ -63,7 +62,8 @@ class User
 
     public function isAlreadyExist()
     {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE phone_no='" . $this->phone_no;
+        $query = "SELECT * FROM " . $this->table_name . " WHERE phone_no='" . $this->phone_no."'";
+        // print_r($query);
         $stmt = $this->conn->prepare($query);
         // execute query
         $stmt->execute();

@@ -29,7 +29,7 @@ if(isset($_FILES['image']) && !empty($_FILES['image']) ){
 // image code end 
 $product->product_img 				= $imageName;
 $product->description=$_POST['description'];
-$product->product_tags=$_POST['product_tags'];
+$product->product_tags = json_encode($_POST['product_tags']);
 $product->stock=0;
 $product->status=0;
 

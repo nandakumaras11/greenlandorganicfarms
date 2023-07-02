@@ -40,7 +40,7 @@ if (isset($_FILES['image']) && !empty($_FILES['image'])) {
     // $gallery->caption              =  $_POST['caption'];
 
     if ($product->createProduct() == 1) {
-        $res_arr = array("status" => "success", "message" => "Successfully Inserted !!");
+        $res_arr = array("status" => "success", "message" => "Product Successfully Added !!");
     } else if ($product->createProduct() == 2) {
         $res_arr = array("status" => "failed", "message" => "Product Already exists !!");
     } else {

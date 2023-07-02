@@ -123,12 +123,9 @@ function selectOneProduct()
 }
 function updateProduct()
 {
-    // $query = "INSERT INTO
-    // " . $this->table_name . "(product_id,category,product_name,old_price,selling_price,product_img,description,product_tags,stock,status) VALUES
-    // ('','".$this->category."','".$this->product_name."','".$this->old_price ."','".$this->selling_price."','". $this->product_img."','". $this->description."','". $this->product_tags."','". $this->stock ."','".$this->status."')";
+    
 
-$query = "UPDATE " . $this->table_name . " SET category='".$this->category."',product_name='".$this->product_name."',old_price='".$this->old_price ."',selling_price='".$this->selling_price."',product_img='". $this->product_img."',description='". $this->description."',product_tags='". $this->product_tags."'
-WHERE product_id='".$this->product_id."'";
+$query = "UPDATE " . $this->table_name . " SET category='".$this->category."',product_name='".$this->product_name."',old_price='".$this->old_price ."',selling_price='".$this->selling_price."',product_img='". $this->product_img."',description='". $this->description."',product_tags='". $this->product_tags."' WHERE product_id='".$this->product_id."'";
 // print_r($query);
 $stmt = $this->conn->prepare($query); 
 if($stmt->execute()){
