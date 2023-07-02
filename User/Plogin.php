@@ -1,0 +1,14 @@
+<?php
+  session_start();
+  include 'dbh.php';
+    $username =  $_POST['mail'];
+    $password =  $_POST['pass'];
+    $sql = "SELECT * FROM user1 WHERE username = '$username' AND passwd = '$password' ";
+    $result = $conn->query($sql);
+    if(!$row = $result->fetch_assoc()) {
+      echo "<script>alert('incorrect username or password');</script>";
+    }else {
+        $_SESSION['id'] = $row['id'];
+        echo "<script>window.location.href='homepage.php';<script>";
+      }
+?>
