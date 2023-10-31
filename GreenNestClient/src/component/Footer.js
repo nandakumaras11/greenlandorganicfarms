@@ -5,7 +5,9 @@ export default function Footer() {
     // <div className='footer'>
     //     <div className="footer-content">aravindas@copyright</div>
     // </div>
-    <div className="bottom-div"></div>
+    <footer className="footer">
+      copyright reserved @2023
+    </footer>
   )
 }
 // Footer.js

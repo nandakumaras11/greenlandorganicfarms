@@ -2,6 +2,7 @@
 
 body {
   margin: 0;
+  padding: 0% 10%;
   font-family: Outfit, sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -12,6 +13,10 @@ body {
 }
 
 @media (max-width: 768px) {
+  body {
+    padding: 0%;
+  }
+
   :root {
     --containerPadding: 0 4%
   }

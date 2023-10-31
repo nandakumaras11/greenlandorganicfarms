@@ -9,6 +9,57 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { setUserLoginStatus } from "../Store1/Slices/UserSlice";
 import { useEffect } from "react";
+
+export function WhatAreYouLookingFor() {
+  return (<div className="categoryFilterContainer spacing">
+    <div className="product-headding">What are you looking for?</div>
+    <div className="categories spacing">
+      <div className="categoryItem">
+        <Link to={"/productList"} state={{
+          category: "plants"
+        }}>
+          <div className="categoryImage">
+            <img src="./image/p1.jpg" />
+          </div>
+          <div className="categoryName">Plants</div>
+        </Link>
+      </div>
+
+      <div className="categoryItem">
+        <Link to={"/productList"} state={{
+          category: "seeds"
+        }}>
+          <div className="categoryImage">
+            <img src="./image/p2.jpg" />
+          </div>
+          <div className="categoryName ">Seeds</div>
+        </Link>
+      </div>
+      <div className="categoryItem">
+        <Link to={"/productList"} state={{
+          category: "planters"
+        }}>
+          <div className="categoryImage">
+            <img src="./image/p3.jpg" />
+          </div>
+          <div className="categoryName">Planters</div>
+        </Link>
+      </div>
+      <div className="categoryItem">
+        <Link to={"/productList"} state={{
+          category: "plantcares"
+        }}>
+          <div className="categoryImage">
+            <img src="./image/p4.jpg" />
+          </div>
+          <div className="categoryName">Plant Care</div>
+        </Link>
+      </div>
+    </div>
+  </div>);
+}
+
+
 export default function Home() {
   const dispatch = useDispatch();
 
@@ -19,51 +70,14 @@ export default function Home() {
   useEffect(() => {
     console.log(user);
     const loginCredentials = JSON.parse(localStorage.getItem("loginCredentials"));
-    if (loginCredentials != null) 
-    dispatch(setUserLoginStatus(loginCredentials));
+    if (loginCredentials != null)
+      dispatch(setUserLoginStatus(loginCredentials));
   }, [])
-  
+
   return (
     <>
       <Slider />
-      <div className="categoryFilterContainer spacing">
-        <div className="product-headding">What are you looking for?</div>
-        <div className="categories spacing">
-          <div className="categoryItem">
-            <Link to={"/productList"} state={{ category: "plants" }}>
-              <div className="categoryImage">
-                <img src="./image/p1.jpg" />
-              </div>
-              <div className="categoryName">Plants</div>
-            </Link>
-          </div>
-
-          <div className="categoryItem">
-            <Link to={"/productList"} state={{ category: "seeds" }}>
-              <div className="categoryImage">
-                <img src="./image/p2.jpg" />
-              </div>
-              <div className="categoryName ">Seeds</div>
-            </Link>
-          </div>
-          <div className="categoryItem">
-            <Link to={"/productList"} state={{ category: "planters" }}>
-              <div className="categoryImage">
-                <img src="./image/p3.jpg" />
-              </div>
-              <div className="categoryName">Planters</div>
-            </Link>
-          </div>
-          <div className="categoryItem">
-            <Link to={"/productList"} state={{ category: "plantcares" }}>
-              <div className="categoryImage">
-                <img src="./image/p4.jpg" />
-              </div>
-              <div className="categoryName">Plant Care</div>
-            </Link>
-          </div>
-        </div>
-      </div>
+      <WhatAreYouLookingFor />
       <div className="product-container spacing">
         <div className="headding-container">
           <div className="label-img">
@@ -86,7 +100,7 @@ export default function Home() {
             ]}
           >
             {products.map((item, index) => {
-              var newArrivalArray = JSON.parse(item.product_tags);
+              var newArrivalArray = item.product_tags != "" && JSON.parse(item.product_tags) || [];
               return newArrivalArray.filter((name) =>
                 name.includes("NEW_ARRIVALS")
               ) == "NEW_ARRIVALS" ? (
@@ -131,7 +145,8 @@ export default function Home() {
             ]}
           >
             {products.map((item, index) => {
-              var newArrivalArray = JSON.parse(item.product_tags);
+              // var newArrivalArray = JSON.parse(item.product_tags);
+              var newArrivalArray = item.product_tags != "" && JSON.parse(item.product_tags) || [];
               // console.log(newArrivalArray);
               return newArrivalArray.filter((name) =>
                 name.includes("BEST_SELLER")

@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { fetchandstore } from "./Store1/Slices/productSlice";
 import { httpRequest } from "./API/api";
 import Shopingcart from "./pages/Shopingcart";
+import Footer from "./component/Footer";
 window.$apiBaseUrl = "https://greenlandorganicfarms.com/api/User/";
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
       <div className="container">
         <Navbar />
         <AllRoutes />
+        <Footer />
       </div>
     </>
   );

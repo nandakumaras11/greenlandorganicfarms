@@ -33,9 +33,9 @@
   /* padding: 12px; */
 }
 
-.price {
+/* .price {
   float: right;
-}
+} */
 
 .product-desc a {
   text-decoration: none;
@@ -114,11 +114,12 @@ s {
 .price {
   color: var(--primary);
   font-weight: 600;
-  font-size: 13px;
+  font-size: 11px;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   padding: 1% 3%;
+  gap: 2%;
 }
 
 .addbtn {

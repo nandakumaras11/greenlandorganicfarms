@@ -8,10 +8,12 @@
   /* flex: 1; */
   width: 30%;
 }
+
 .productdetails-right-container {
   /* flex: 1; */
   width: 66%;
 }
+
 .product-img-container {
   display: flex;
 }
@@ -19,6 +21,7 @@
 .big-product-img img {
   width: 100%;
 }
+
 .button-flex {
   display: flex;
 }
@@ -30,6 +33,28 @@
   margin: 5px;
   color: #5c5353;
 }
+
+.productFeatures {
+  display: flex;
+  /* border-top: 1px solid rgb(240, 236, 236); */
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  margin-top: 5%;
+  padding-top: 2%;
+}
+
+.saveUpto {
+  font-weight: 100;
+  float: left;
+  margin-top: 1%;
+  color: white;
+  background-color: #9ca3af;
+  padding: 0.2% 2%;
+  width: 25%;
+  border-radius: 10px;
+}
+
 .product-names {
   word-break: break-word;
   font-weight: bold;
@@ -41,17 +66,20 @@
   font-style: normal;
   letter-spacing: 0.06rem;
 }
+
 .product_subtitle {
   padding: 5px 0px 10px 0px;
   font-size: 12px;
   color: #555;
 }
+
 .quantity_container {
   display: flex;
 
   justify-content: center;
   align-items: center;
 }
+
 .quantity_btn {
   padding: 4px 14px;
   color: #666;
@@ -60,13 +88,16 @@
   font-weight: bold;
   cursor: pointer;
 }
+
 .quantity_count {
   border-left: none;
   border-right: none;
 }
+
 .price-btn-container {
-  padding-top: 3%;
+  /* padding-top: 3%; */
 }
+
 .aboutProductHeading {
   font-size: 24px !important;
   line-height: 32px;
@@ -75,6 +106,7 @@
   letter-spacing: -0.02em;
   font-weight: 400;
 }
+
 .aboutProductDescription {
   /* max-width: 692px; */
   margin: 0 auto;
@@ -85,9 +117,16 @@
   font-family: Outfit;
   text-align: justify;
 }
+
 /* //media querys */
 /* @media (max-width: 480px) */
 @media (max-width: 768px) {
+  .saveUpto {
+    width: 50%;
+    margin-top: 0.6rem;
+    margin-left: 3%;
+  }
+
   .product-names {
     font-size: 20px;
   }
@@ -95,13 +134,16 @@
   .aboutProductDescription {
     max-width: 692px;
   }
+
   .productdetail-container {
     flex-direction: column;
-    margin:0% 4%;
+    margin: 0% 4%;
   }
+
   .productdetails-left-container {
     width: 100%;
   }
+
   .productdetails-right-container {
     /* padding: 0% 4%; */
     width: 100%;

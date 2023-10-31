@@ -58,7 +58,7 @@ function humanReadMsg(msg) {
 
 }
 
-// var apiBaseUrl = "https://greenlandorganicfarms.com/api/";
+var apiBaseUrl = "https://greenlandorganicfarms.com/api/";
 
-var apiBaseUrl = "http://localhost/Greennest/api/";
+// var apiBaseUrl = "http://localhost/Greennest/api/";
 

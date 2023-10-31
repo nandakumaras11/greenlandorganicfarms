@@ -181,7 +181,8 @@ const PrivacyPolicy = () => {
                 <li>
                     <p>By phone number: +91 88489 68203</p>
                 </li>
-            </ul><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+            </ul>
+            {/* <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script> */}
         </div>
     )
 }

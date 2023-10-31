@@ -7,27 +7,27 @@
   background-repeat: no-repeat;
   /* border-radius: 21px; */
 }
+
 .slider-containerDiv {
   /* width: 92%;
     margin: 13px 4%; */
   width: 100%;
 }
+
 @media (max-width: 768px) {
   .slider-img {
     height: 285px;
     /* background-size: contain; */
   }
 }
+
 @media (max-width: 480px) {
   .slider-img {
-    height: 500px !important;
-    /* height:142px;
-    background-size: contain; */
+    height: 17vh !important;
     width: 100%;
     background-position: center;
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
-    /* border-radius: 21px; */
   }
 }
 

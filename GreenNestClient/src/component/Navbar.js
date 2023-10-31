@@ -104,13 +104,21 @@ const Navbar = () => {
           name: "Account",
           children: [
             {
-              content: [
-                { name: "Orders", rout: "/orders" },
-                // { name: "Change Password", rout: "/password" },
-                user_id == null
-                  ? { name: "Sign In", rout: "/signIn" }
-                  : { name: "Sign Out", rout: "/signOut" },
-              ],
+              content: user_id==null ?[
+                { name: "Sign In", rout: "/signIn" }
+              ]
+              :[
+                { name: "Sign Out", rout: "/signOut" },
+                { name: "Orders", rout: "/orders" }
+              ]
+              
+              // content: [
+              //   user_id !=null&& { name: "Orders", rout: "/orders" },
+              //   // { name: "Change Password", rout: "/password" },
+              //   user_id == null
+              //     ? { name: "Sign In", rout: "/signIn" }
+              //     : { name: "Sign Out", rout: "/signOut" },
+              // ],
             },
           ],
         },
@@ -120,11 +128,11 @@ const Navbar = () => {
           children: [
             {
               content: [
-                { name: "Contact US", rout:"/contactus" },
+                { name: "Contact US", rout: "/contactus" },
                 { name: "Privacy Policy", rout: "/PrivacyPolicy" },
                 { name: "Terms & Conditions", rout: "/Terms" },
                 { name: "Cancellation & Refund", rout: "/RefundPolicy" },
-                { name: "About US", rout: "/About"  },
+                { name: "About US", rout: "/About" },
               ],
             },
           ],
@@ -152,7 +160,7 @@ const Navbar = () => {
         <Link to="/">
           <div className="logo">
             <img src="./image/logo.png" width="60"
-             />
+            />
           </div>
         </Link>
       </div>

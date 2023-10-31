@@ -8,18 +8,18 @@ export const PayOnline = () => {
   const data = {
     order_id: state.orderID,
     CUST_ID: state.user_id,
-    amount: state.cartTotal,
-    currency:"INR",
-    merchant_id:2557316,
-    redirect_url:"https://greenlandorganicfarms.com/api/User/cca/ccavResponseHandler.php",
-    cancel_url:"https://greenlandorganicfarms.com/api/User/cca/ccavResponseHandler.php",
+    // amount: state.cartTotal,
+    currency: "INR",
+    merchant_id: 2557316,
+    redirect_url: "https://greenlandorganicfarms.com/api/User/cca/ccavResponseHandler.php",
+    cancel_url: "https://greenlandorganicfarms.com/api/User/cca/ccavResponseHandler.php",
 
   };
-  useEffect(()=>{
+  useEffect(() => {
     setTimeout(() => {
       submitBtn.current.click();
     }, 1000);
-  },[])
+  }, [])
 
   return (
     <div>
@@ -29,7 +29,7 @@ export const PayOnline = () => {
           action="https://greenlandorganicfarms.com/api/User/cca/ccavRequestHandler.php"
           method="post"
         >
-          <div><input type="hidden" value={new Date().getTime()} readOnly ref={tidRef} name="tid" id="tid"  /></div>
+          <div><input type="hidden" value={new Date().getTime()} readOnly ref={tidRef} name="tid" id="tid" /></div>
           {Object.keys(data).map((eachItem, index) => {
             return (
               <input key={index} readOnly type="hidden" value={data[eachItem]} name={eachItem} />

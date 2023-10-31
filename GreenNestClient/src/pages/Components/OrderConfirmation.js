@@ -16,24 +16,24 @@ export const OrderConfirmation = () => {
   let completeOrder = () => {
     if (!isEmpty) {
       const product = items.map(({ product_id, price, quantity }) => {
-        return { product_id, price, quantity };
+        return { product_id, quantity };
       });
       const data = {
         user_id: user_id,
         address: address,
         items: product,
-        cartTotal: cartTotal,
+        // cartTotal: cartTotal,
         paymentMode: paymentMode,
-        orderID:null
+        orderID: null
       };
-      console.log(data);
+      // console.log(data);
       httpRequest(data, "checkOut.php").then((respose) => {
         if (respose && respose.status && paymentMode == "cod") {
           //cod success
           navigate("/OrderPlaced");
         } else if (respose && respose.status && paymentMode == "Online") {
           //cod success
-          data.orderID=respose.message;
+          data.orderID = respose.message;
           navigate("/PayOnline", { state: data });
         }
       });

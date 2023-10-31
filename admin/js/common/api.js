@@ -33,7 +33,7 @@ $("#saveProduct").click(function (e) {
     e.preventDefault();
     API('User/createProduct.php', new FormData($("#my_form")[0]), (result) => {
         // console.log(result)
-        location.reload();
+        // location.reload();
         humanReadMsg(result.message);
         getProduct();
 
@@ -46,9 +46,9 @@ let getProduct = () => {
     $("#productTable").dataTable();
     return new Promise((resolve, reject) => {
         // productTableBody
-        
+
         API("User/getProductList.php", {}, (response) => {
-            
+
             allProducts = response;
             // console.log(re)
             $("#productTableBody").empty();
@@ -60,7 +60,7 @@ let getProduct = () => {
             $(".deleteProduct").unbind().click(function (e) {
                 e.preventDefault();
                 var product_id = this.getAttribute("id");
-                API_JSON("User/deleteProduct.php", { 'product_id': product_id }, (result)=>{
+                API_JSON("User/deleteProduct.php", { 'product_id': product_id }, (result) => {
                     location.reload();
                     // getProduct();
                 })
@@ -166,12 +166,11 @@ let getOrderDetails = (products) => {
             // $('#orderIdHiddenBox').val(order_id);
             API_JSON("User/selectOneOrder.php", { 'order_id': order_id }, (result) => {
                 // console.log(result.status);
-                if(result[0].orderMessage=="TRANSIST" || result[0].orderMessage=="DELIVERED")
-                {
+                if (result[0].orderMessage == "TRANSIST" || result[0].orderMessage == "DELIVERED") {
                     $('#orderMessage').val("");
                 }
                 else
-                $('#orderMessage').val(result[0].orderMessage);
+                    $('#orderMessage').val(result[0].orderMessage);
 
                 $('#orderIdHiddenBox').val(result[0].order_id);
             });
@@ -202,7 +201,7 @@ $("#adminLogin").click(function (e) {
         console.log(result)
         // location.reload();
         humanReadMsg(result.message);
-     
+
     })
 });
 
