@@ -45,8 +45,6 @@ var allProducts = [];
 let getProduct = () => {
     $("#productTable").dataTable().fnDestroy();
     return new Promise((resolve, reject) => {
-
-
         API("User/getProductList.php", {}, (response) => {
             allProducts = response;
             // console.log(re)
@@ -56,6 +54,7 @@ let getProduct = () => {
                 $("#productTableBody").append("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td><img style='width: 150px;height: 100px;' src='../api/User/images/{3}' alt='product-img'/></td><td>{4}</td><td>{5}</td><td><i type='button' data-toggle='modal' data-target='#exampleModalCenter' class='fa fa-pencil-square-o editProduct' aria-hidden='true' id={6} ></i></td><td><i class='fa fa-trash-o deleteProduct' aria-hidden='true' id={6} ></i></td></tr>".format(count, element.product_name, element.category, element.product_img, element.old_price, element.selling_price, element.product_id));
                 count = count + 1;
             });
+
             $(".deleteProduct").unbind().click(function (e) {
                 e.preventDefault();
                 var product_id = this.getAttribute("id");
@@ -78,6 +77,11 @@ let getProduct = () => {
                         $("#plantCareRadioBtn").prop("checked", true);
 
                     $('#productname').val(result[0].product_name);
+                   $('#old_producttag').val(JSON.stringify(result[0].product_tags))
+                //    console.log()
+                    // $("#new_image").val(imagename)
+                    $("#old_image").val(result[0].product_img)
+
 
                     $('#oldprice').val(result[0].old_price);
                     $('#sellingprice').val(result[0].selling_price);
@@ -102,9 +106,13 @@ $("#editProduct").click(function (e) {
         // console.log(result)
         // location.reload();
         humanReadMsg(result.message);
-        getProduct();
+
+        // getProduct();
 
     })
+     location.reload(true);   // refresh window
+
+    // close_btn
 });
 // edit product end
 //gallery or banner

@@ -18,4 +18,5 @@ if(isset($result) && !empty($result)){
 		$res_arr = array("status" => "failed", "message"=> "Empty Data !");
 }
 echo json_encode($res_arr);
+// echo "success"
 ?>
