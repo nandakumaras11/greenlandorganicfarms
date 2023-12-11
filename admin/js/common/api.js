@@ -119,9 +119,28 @@ $("#editProduct").click(function (e) {
 $("#saveGallery").click(function (e) {
     e.preventDefault();
     API('User/createGallery.php', new FormData($("#my_form")[0]), (result) => {
-        // console.log(result)
+        console.log(result);
+
+if(result.status=="success")
+{
+    swal({
+        title: "Success",
+        text: "Successfuly Inserted!",
+        type: "success",
+        confirmButtonText: "OK"
+      });
+
+}
+else{
+    swal({
+        title: "Error",
+        text: "Something went wrong.Please try again!",
+        type: "error",
+        confirmButtonText: "OK"
+      });
+}
         // location.reload();
-        humanReadMsg(result.message);
+        // humanReadMsg(result.message);
         getGallery();
 
     })
@@ -138,7 +157,27 @@ let getGallery = () => {
         $(".deleteGallery").unbind("click").click(function (e) {
             e.preventDefault();
             var gallery_id = this.getAttribute("id");
-            API_JSON("User/deleteGallery.php", { 'galleryId': gallery_id }, getGallery, () => { })
+            API_JSON("User/deleteGallery.php", { 'galleryId': gallery_id }, (result) => {
+                if(result.status=="success")
+                {
+                    swal({
+                        title: "Success",
+                        text: "Successfuly Deleted!",
+                        type: "success",
+                        confirmButtonText: "OK"
+                      });
+                
+                }
+                else{
+                    swal({
+                        title: "Error",
+                        text: "Something went wrong.Please try again!",
+                        type: "error",
+                        confirmButtonText: "OK"
+                      });
+                }
+                  getGallery();
+             })
         });
 
         $('#galleryTable').DataTable({ pageLength: 5, lengthMenu: [[5, 10, 20], [5, 10, 20]] });
