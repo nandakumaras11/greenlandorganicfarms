@@ -21,8 +21,7 @@ class User
             return 2;
         } else {
             // return $this->isAlreadyExist();
-            $query = "INSERT INTO
-    " . $this->table_name . "(user_id,username,password,address,phone_no) VALUES
+            $query = "INSERT INTO " . $this->table_name . "(user_id,username,password,address,phone_no) VALUES
     ('','" . $this->username . "','" . $this->password . "','" . $this->address . "','" . $this->phone_no . "')";
 
             $stmt = $this->conn->prepare($query);
@@ -34,7 +33,7 @@ class User
             return false;
         }
 
-    }
+    }   
     public function authentication()
     {
         $query = "SELECT "."phone_no,password"." FROM " . $this->table_name . " WHERE phone_no='" . $this->signInMobile . "' AND password='" . $this->signInPassword . "'";
@@ -63,13 +62,13 @@ class User
 
     public function isAlreadyExist()
     {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE phone_no='" . $this->phone_no;
+        $query = "SELECT * FROM " . $this->table_name . " WHERE phone_no='" . $this->phone_no."'";
         $stmt = $this->conn->prepare($query);
         // execute query
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
             // $this->user_id=$stmt->user_id;
-            // return 1;
+            // return 1; 
             return 2;
         } else {
             return 1;
