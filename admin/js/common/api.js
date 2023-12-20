@@ -232,7 +232,10 @@ $("#saveStatusChange").click(function (e) {
 $("#adminLogin").click(function (e) {
     e.preventDefault();
     API('User/userAuthentication.php', new FormData($("#my_form1")[0]), (result) => {
-        console.log(result)
+        if(result.status=='success')
+        showPopUpRedirect("Success","Successfuly Login","success");  //
+        else
+            showPopUpReload("Failed","Give correct phone number and password","error");
         // location.reload();
         humanReadMsg(result.message);
      

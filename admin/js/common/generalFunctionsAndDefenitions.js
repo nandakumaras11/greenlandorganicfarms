@@ -65,6 +65,18 @@ function showPopUp(headding,txt,typ){
         confirmButtonText: "Ok"
       });
 }
+function showPopUpRedirect(headding,txt,typ){
+    swal({
+        title: headding,
+        text: txt,
+        type: typ,
+        confirmButtonText: "Ok"
+      },
+      function(){ 
+        // location.reload(); //adminHome.html
+        window.location.replace("https://greenlandorganicfarms.com/greennextAdmin/adminHome.html");
+    });
+}
 function showPopUpReload(headding,txt,typ){
     swal({
         title: headding,
