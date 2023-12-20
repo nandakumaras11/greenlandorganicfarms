@@ -31,11 +31,13 @@ function API_JSON(url, data, successCallBack) {
 // save product to database 
 $("#saveProduct").click(function (e) {
     e.preventDefault();
-    API('User/createProduct.php', new FormData($("#my_form")[0]), (result) => {
-        console.log(result)
-        // location.reload();
-        humanReadMsg(result.message);
-        getProduct();
+    API('User/createProduct.php', new FormData($("#my_form")[0]), (result) => {   
+        console.log(result);         
+            if(result.status=="success")
+            showPopUpReload("Success",result.message,"success");
+        else
+            showPopUpReload("Error",result.message,"error");
+        // getProduct();
 
     })
 });
@@ -58,7 +60,7 @@ let getProduct = () => {
             $(".deleteProduct").unbind().click(function (e) {
                 e.preventDefault();
                 var product_id = this.getAttribute("id");
-                API_JSON("User/deleteProduct.php", { 'product_id': product_id }, getProduct)
+                API_JSON("User/deleteProduct.php", { 'product_id': product_id },location.reload());
             });
             $(".editProduct").click(function (e) {
                 e.preventDefault();
@@ -119,26 +121,12 @@ $("#editProduct").click(function (e) {
 $("#saveGallery").click(function (e) {
     e.preventDefault();
     API('User/createGallery.php', new FormData($("#my_form")[0]), (result) => {
-        console.log(result);
+        // console.log(result);
 
-if(result.status=="success")
-{
-    swal({
-        title: "Success",
-        text: "Successfuly Inserted!",
-        type: "success",
-        confirmButtonText: "OK"
-      });
-
-}
-else{
-    swal({
-        title: "Error",
-        text: "Something went wrong.Please try again!",
-        type: "error",
-        confirmButtonText: "OK"
-      });
-}
+        if(result.status=="success")
+        showPopUp("Success","Successfuly Inserted!","success");
+    else
+        showPopUp("Error","Something went wrong.Please try again!","error");
         // location.reload();
         // humanReadMsg(result.message);
         getGallery();
@@ -159,23 +147,30 @@ let getGallery = () => {
             var gallery_id = this.getAttribute("id");
             API_JSON("User/deleteGallery.php", { 'galleryId': gallery_id }, (result) => {
                 if(result.status=="success")
-                {
-                    swal({
-                        title: "Success",
-                        text: "Successfuly Deleted!",
-                        type: "success",
-                        confirmButtonText: "OK"
-                      });
+                showPopUp("Success","Successfuly Deleted","success");
+            else
+                showPopUp("Error","Something went wrong.Please try again!","error");
+
+                // if(result.status=="success")
+                // {
+                //     showPopUp("Success","Successfuly Deleted","Ok");
+                    // swal({
+                    //     title: "Success",
+                    //     text: "Successfuly Deleted!",
+                    //     type: "success",
+                    //     confirmButtonText: "OK"
+                    //   });
                 
-                }
-                else{
-                    swal({
-                        title: "Error",
-                        text: "Something went wrong.Please try again!",
-                        type: "error",
-                        confirmButtonText: "OK"
-                      });
-                }
+                // }
+                // else
+                //     showPopUp("Error","Something went wrong.Please try again!","Ok");
+                    // swal({
+                    //     title: "Error",
+                    //     text: "Something went wrong.Please try again!",
+                    //     type: "error",
+                    //     confirmButtonText: "OK"
+                    //   });
+                
                   getGallery();
              })
         });

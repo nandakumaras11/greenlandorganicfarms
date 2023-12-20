@@ -57,7 +57,25 @@ function humanReadMsg(msg) {
     }, 3000);
 
 }
-
+function showPopUp(headding,txt,typ){
+    swal({
+        title: headding,
+        text: txt,
+        type: typ,
+        confirmButtonText: "Ok"
+      });
+}
+function showPopUpReload(headding,txt,typ){
+    swal({
+        title: headding,
+        text: txt,
+        type: typ,
+        confirmButtonText: "Ok"
+      },
+      function(){ 
+        location.reload();
+    });
+}
 // var apiBaseUrl = "https://greenlandorganicfarms.com/api/";
 
 var apiBaseUrl = "http://localhost/greenlandorganicfarms/api/";

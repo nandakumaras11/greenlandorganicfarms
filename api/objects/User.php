@@ -93,34 +93,34 @@ class User
     //         return [];
     //     }
     // }
-    public function updateAddress()
-    {
-        $query = "UPDATE " . $this->table_name . " SET address='".$this->address."' WHERE user_id='".$this->user_id."'";
-    // print_r($query);
-    $stmt = $this->conn->prepare($query);
-    if($stmt->execute()){
-    return 1;
-    }
-    return false;
-    }
-    public function getAddress()
-    {
-        $query = "SELECT "."user_id,address,username,phone_no"." FROM " . $this->table_name . " WHERE user_id= " . $this->user_id;
-        // prepare query statement
-        $stmt = $this->conn->prepare($query);
-        // execute query
-        $stmt->execute();
+    // public function updateAddress()
+    // {
+    //     $query = "UPDATE " . $this->table_name . " SET address='".$this->address."' WHERE user_id='".$this->user_id."'";
+    // // print_r($query);
+    // $stmt = $this->conn->prepare($query);
+    // if($stmt->execute()){
+    // return 1;
+    // }
+    // return false;
+    // }
+    // public function getAddress()
+    // {
+    //     $query = "SELECT "."user_id,address,username,phone_no"." FROM " . $this->table_name . " WHERE user_id= " . $this->user_id;
+    //     // prepare query statement
+    //     $stmt = $this->conn->prepare($query);
+    //     // execute query
+    //     $stmt->execute();
 
-        if ($stmt->rowCount() > 0) {
-            $stmt->setFetchMode(PDO::FETCH_ASSOC);
-            while ($row = $stmt->fetch()) {
-                $res[] = $row;
-            }
-            return $res;
-        } else {
-            return [];
-        }  
-    }
+    //     if ($stmt->rowCount() > 0) {
+    //         $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    //         while ($row = $stmt->fetch()) {
+    //             $res[] = $row;
+    //         }
+    //         return $res;
+    //     } else {
+    //         return [];
+    //     }  
+    // }
 
    
 // function updateProduct()
