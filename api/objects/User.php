@@ -41,22 +41,28 @@ class User
         
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
-        if ($stmt->rowCount() > 0) {
-            $stmt->setFetchMode(PDO::FETCH_ASSOC);
-            while ($row = $stmt->fetch()) {
-                $res[] = $row;
-            }
-            // $userDetails = $res;
-            return $res;
+        if ($stmt->rowCount() > 1) {
+            // $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            // while ($row = $stmt->fetch()) {
+            //     $res[] = $row;
+            // }
+            // // $userDetails = $res;
+            // return $res;
+            return 2;
         }
+        else if($stmt->rowCount() == 1){
+            return 1;
+        }
+        else
+        return -1;
         // if ($stmt->rowCount() > 0) {
 
         //     // $this->user_id=$stmt->user_id;
         //     return 1;
         // }
-        else {
-            return [];
-        }
+        // else {
+        //     return [];
+        // }
 
     }
 

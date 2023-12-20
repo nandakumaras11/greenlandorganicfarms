@@ -231,7 +231,7 @@ $("#saveStatusChange").click(function (e) {
 });
 $("#adminLogin").click(function (e) {
     e.preventDefault();
-    API('User/userAuthentication.php', new FormData($("#my_form")[0]), (result) => {
+    API('User/userAuthentication.php', new FormData($("#my_form1")[0]), (result) => {
         console.log(result)
         // location.reload();
         humanReadMsg(result.message);

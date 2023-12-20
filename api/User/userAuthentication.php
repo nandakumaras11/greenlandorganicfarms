@@ -9,9 +9,12 @@ $db 			= $database->getConnection();
 $newUser        = new User($db);
 $res_arr		= array();
 
-$data = json_decode(file_get_contents('php://input'), true);
-$newUser->signInMobile=$data['signInMobile'];
-$newUser->signInPassword=md5($data['signInPassword']);
+// $data = json_decode(file_get_contents('php://input'), true);
+// var_dump($data);
+var_dump($_POST['signInMobile']);
+// print_r(json_decode(file_get_contents('php://input'), true));
+$newUser->signInMobile=$_POST['signInMobile'];
+$newUser->signInPassword=md5($_POST['signInPassword']);
 // $newUser->username="aravind";
 // $newUser->password=md5("aravind123");
 
