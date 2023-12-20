@@ -16,6 +16,9 @@ if(empty($data['address']))
 $newUser->address="";
 else
 $newUser->address=$data['address'];
+
+// if($newUser->phoneNnumberCheck()!=0)
+// {
 $result=$newUser->insertUser();
 		if($result==1){
 			$res_arr = array("status" 	=> true,"message" 	=> "Successfully Registered !!","user_id"=>$newUser->user_id);
@@ -24,5 +27,9 @@ $result=$newUser->insertUser();
 		}else{
 			$res_arr = array("status" 	=> false,"message" 	=> "Someting went Wrong. Try Again.");
 		}
+	}
+	// else
+	// $res_arr = array("status" 	=> false,"message" 	=> "Phone Number was.");
+
 echo json_encode($res_arr);
 ?>
