@@ -11,11 +11,13 @@ $db 			= $database->getConnection();
 $address 			= new Address($db);
 $res_arr		= array();
 
-$_POST['address_id']=1;
+$data = json_decode(file_get_contents('php://input'), true);
+// $address->address_id = $data['address_id'];
+// $_POST['address_id']=1;
 // print_r($_POST);
 // print_r(json_decode(file_get_contents("php://input"), true));
-if(isset($_POST['address_id']) && !empty($_POST['address_id']) ){
-		$address->address_id		= $_POST['address_id'];
+if(isset($data['address_id']) && !empty($data['address_id']) ){
+		$address->address_id		= $data['address_id'];
 			if($address->deleteAddress() == 1){
 			$res_arr = array("status" 	=> "success","message" 	=> "Address Removed");
 		}else{

@@ -13,7 +13,11 @@ $database   = new Database();
 $db    = $database->getConnection();
 $address    = new Address($db);
 $res_arr  = array();
-$address->user_id=93; //hardcoded
+
+$data = json_decode(file_get_contents('php://input'), true);
+$address->user_id = $data['user_id'];
+
+// $address->user_id=93; //hardcoded
 $result   = $address->addressDetailList();
 if(isset($result) && !empty($result)){
   $res_arr = $result;
