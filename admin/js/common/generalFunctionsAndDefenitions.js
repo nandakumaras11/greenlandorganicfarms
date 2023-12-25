@@ -89,6 +89,8 @@ function showPopUpReload(headding,txt,typ){
     });
 }
 // var apiBaseUrl = "https://greenlandorganicfarms.com/api/";
+// var indexPage = "https://greenlandorganicfarms.com/greennextAdmin/index.html";
 
 var apiBaseUrl = "http://localhost/greenlandorganicfarms/api/";
+var indexPage = "http://localhost/greenlandorganicfarms/admin/index.html";
 

@@ -1,16 +1,12 @@
 <?php
+session_start();
 class Admin
 {
     private $conn;
     private $table_name = 'admin_details';
     public $admin_id;
-    // public $username;
     public $password;
-    // public $address;
     public $phone_no;
-    // public $signInMobile;
-    // public $signInPassword;
-    // public $userDetails;
     public function __construct($db)
     {
         $this->conn = $db;
@@ -21,19 +17,21 @@ class Admin
         // echo ($query);
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
+        
         if ($stmt->rowCount() > 1) {
             // admin_id
-            echo $stmt->fetch();
             return 2;
         }
         else if($stmt->rowCount() == 1){
-            return 1;
+         
+            $res=$stmt->fetch();
+            $_SESSION['userid']=$res['admin_id'];
+        // print_r($res['admin_id']);
+        return 1;
         }
         else
         return -1;
-
     }
-
     public function isAlreadyExist()
     {
         $query = "SELECT * FROM " . $this->table_name . " WHERE phone_no='" . $this->phone_no."'";
@@ -48,6 +46,12 @@ class Admin
             return 1;
         }
     }
-
+public function isLogin()
+{
+    if(isset($_SESSION['userid']))
+    return $_SESSION['userid'];
+    else
+    return null;
+}
 }
 

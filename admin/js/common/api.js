@@ -41,7 +41,6 @@ $("#saveProduct").click(function (e) {
 
     })
 });
-
 var allProducts = [];
 
 let getProduct = () => {
@@ -242,3 +241,22 @@ $("#adminLogin").click(function (e) {
     })
 });
 
+
+   function checkAdminAuthentication()
+   {
+    API('User/isloginornot.php', {}, (result) => {   
+        console.log(result);         
+            if(result.status=="failed")
+            {
+                window.location.replace(indexPage);
+                // showPopUpReload("Success",result.message,"success");
+                // console.log("session pakka");
+                // e.preventDefault();
+
+        }
+        // getProduct();
+
+    })
+   }
+
+// 
