@@ -231,7 +231,7 @@ $("#saveStatusChange").click(function (e) {
 });
 $("#adminLogin").click(function (e) {
     e.preventDefault();
-    API('User/userAuthentication.php', new FormData($("#my_form1")[0]), (result) => {
+    API('User/adminAutentication.php', new FormData($("#my_form1")[0]), (result) => {
         if(result.status=='success')
         showPopUpRedirect("Success","Successfuly Login","success");  //
         else
