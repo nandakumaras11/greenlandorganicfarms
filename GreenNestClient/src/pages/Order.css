@@ -61,6 +61,40 @@
   border-radius: 0px 0px 10px 10px;
 
 }
+
+/* manageaddress component  start */
+.flex-child {
+  width: 45%;
+}
+.address-txt-area{
+  width: 100%;
+}
+.txt-area{
+  height: 101px;
+}
+.saveBtn{
+  width: 100%;
+    background-color: var(--primary);
+    border: none;
+    color: white;
+    cursor: pointer;
+    background: var(--primary);
+    border-color: var(--primary);
+    line-height: 20px;
+    border-radius: unset !important;
+    line-height: 20px;
+    font-size: 15px;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+    font-family: Outfit;
+    min-height: 40px !important;
+    pointer-events: visible;
+    line-height: calc(1 + 0.8 / 1);
+    margin-top: 25px !important;
+    text-transform: uppercase;
+}
+/* end  */
+
 @keyframes slideDown {
   from {
     /* height: 0px; */
