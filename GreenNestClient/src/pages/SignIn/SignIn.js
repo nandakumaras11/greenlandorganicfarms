@@ -19,7 +19,7 @@ export const SignIn = () => {
   const initialState = {
     name: "",
     phone_no: "",
-    address: "",
+    // address: "",
     password: "",
     signInMobile: "",
     signInPassword: "",
@@ -56,10 +56,12 @@ export const SignIn = () => {
     } else if ((!isSignIn && state.phone_no == "") || (!isSignIn && !(/^[6-9]\d{9}$/gm).test(state.phone_no))){
       showHideMessage("Mobile number is invalid");
       return;
-    } else if (!isSignIn && state.address == "") {
-      showHideMessage("Address is empty");
-      return;
-    } else if (!isSignIn && state.password == "") {
+    } 
+    // else if (!isSignIn && state.address == "") {
+    //   showHideMessage("Address is empty");
+    //   return;
+    // } 
+    else if (!isSignIn && state.password == "") {
       showHideMessage("Password is empty");
       return;
     }
@@ -163,7 +165,7 @@ export const SignIn = () => {
                 placeholder="Enter Your Mobile Number"
               />
             </div>
-            <div className="address spacing">
+            {/* <div className="address spacing">
               <textarea
                 className="signInControl textArea"
                 placeholder="Enter Your Address"
@@ -171,7 +173,7 @@ export const SignIn = () => {
                 name="address"
                 onChange={handleInputChange}
               ></textarea>
-            </div>
+            </div> */}
             <div className="password spacing">
               <input
                 className="signInControl "
