@@ -26,6 +26,8 @@ import { PayOnline } from "./pages/OnlinePayment/PayOnline";
 import { OrderPlaced } from "./pages/OrderPlaced/OrderPlaced";
 import AboutUS from "./pages/AboutUS";
 import PrivacyPolicy from "./pages/Privacy";
+import Manageaddress from "./pages/Manageaddress";
+
 import Terms from "./pages/Terms";
 import RefundPolicy from "./component/RefundPolicy";
 // import
@@ -109,6 +111,10 @@ const routeInfo = [
   {
     path: "/Planters",
     component: <Planters />,
+  },
+  ,{
+   path:"manageaddress",
+   component:<Manageaddress/>
   },
 ];
 export const AllRoutes = () => {

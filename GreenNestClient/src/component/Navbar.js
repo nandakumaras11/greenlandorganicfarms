@@ -109,13 +109,13 @@ const Navbar = () => {
                 // { name: "Change Password", rout: "/password" },
                 user_id == null
                   ? { name: "Sign In", rout: "/signIn" }
-                  : { name: "Sign Out", rout: "/signOut" },
+                  : { name: "Sign Out", rout: "/signOut" },{ name: "Manage Address", rout: "/manageaddress" },
               ],
             },
           ],
         },
         {
-          id: 17,
+          id: 18,
           name: "FAQ",
           children: [
             {
