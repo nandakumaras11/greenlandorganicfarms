@@ -33,38 +33,49 @@ class User
             return false;
         }
 
-    }   
+    }
+    
     public function authentication()
     {
-        $query = "SELECT "."phone_no,password"." FROM " . $this->table_name . " WHERE phone_no='" . $this->signInMobile . "' AND password='" . $this->signInPassword . "'";
+        $query = "SELECT * FROM " . $this->table_name . " WHERE phone_no='" . $this->signInMobile . "' AND password='" . $this->signInPassword . "'";
         // print_r($query);
         
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
-        if ($stmt->rowCount() > 1) {
-            // $stmt->setFetchMode(PDO::FETCH_ASSOC);
-            // while ($row = $stmt->fetch()) {
-            //     $res[] = $row;
-            // }
-            // // $userDetails = $res;
-            // return $res;
-            return 2;
+        if ($stmt->rowCount() > 0) {
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            while ($row = $stmt->fetch()) {
+                $res[] = $row;
+            }
+            // $userDetails = $res;
+            return $res;
         }
-        else if($stmt->rowCount() == 1){
-            return 1;
-        }
-        else
-        return -1;
         // if ($stmt->rowCount() > 0) {
 
         //     // $this->user_id=$stmt->user_id;
         //     return 1;
         // }
-        // else {
-        //     return [];
-        // }
+        else {
+            return [];
+        }
 
     }
+    // public function authentication()
+    // {
+    //     $query = "SELECT "."phone_no,password"." FROM " . $this->table_name . " WHERE phone_no='" . $this->signInMobile . "' AND password='" . $this->signInPassword . "'";
+        
+    //     $stmt = $this->conn->prepare($query);
+    //     $stmt->execute();
+    //     if ($stmt->rowCount() > 1) {
+    //         return 2;
+    //     }
+    //     else if($stmt->rowCount() == 1){
+    //         return 1;
+    //     }
+    //     else
+    //     return -1;
+
+    // }
 
     public function isAlreadyExist()
     {
