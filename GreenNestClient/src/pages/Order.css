@@ -53,6 +53,11 @@
   border-radius: 10px;
 
 }
+#editAddressBox{
+  resize: none;
+  border: none;
+  outline: none;
+}
 .cancelOrder {
   background: #FF0800;
   color: white;
@@ -71,6 +76,16 @@
 }
 .txt-area{
   height: 101px;
+}
+.cancel {
+  flex-direction: column;
+  display: flex;
+  margin: 1% 4%;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.pointer{
+  cursor: pointer;
 }
 .saveBtn{
   width: 100%;
@@ -92,6 +107,27 @@
     line-height: calc(1 + 0.8 / 1);
     margin-top: 25px !important;
     text-transform: uppercase;
+}
+.cancelBtn{
+  width: 100%;
+  background-color: gray;
+  border: none;
+  color: white;
+  cursor: pointer;
+  /* background: var(--primary); */
+  border-color: var(--primary);
+  line-height: 20px;
+  border-radius: unset !important;
+  line-height: 20px;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+  font-family: Outfit;
+  min-height: 40px !important;
+  pointer-events: visible;
+  line-height: calc(1 + 0.8 / 1);
+  margin-top: 25px !important;
+  text-transform: uppercase;
 }
 /* end  */
 
