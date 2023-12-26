@@ -19,15 +19,15 @@ class Address
             // return $this->isAlreadyExist();
             $query = "INSERT INTO " . $this->table_name . "(address_id,user_id,address) VALUES
     ('','" . $this->user_id . "','" . $this->address . "')";
-            print_r($query);
+            // print_r($query);
 
             $stmt = $this->conn->prepare($query);
-            return 1;
-            // if ($stmt->execute()) {
-            //     $this->user_id = $this->conn->lastInsertId();
-            //     return 1;
-            // }
-            // return false;
+           
+            if ($stmt->execute()) {
+                return 1;
+            }
+            return false;
+            // return 1;
         }
 
     }

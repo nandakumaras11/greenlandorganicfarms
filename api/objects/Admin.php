@@ -25,7 +25,7 @@ class Admin
         else if($stmt->rowCount() == 1){
          
             $res=$stmt->fetch();
-            $_SESSION['userid']=$res['admin_id'];
+            $_SESSION['admin_id']=$res['admin_id'];
         // print_r($res['admin_id']);
         return 1;
         }
@@ -48,10 +48,21 @@ class Admin
     }
 public function isLogin()
 {
-    if(isset($_SESSION['userid']))
-    return $_SESSION['userid'];
+    if(isset($_SESSION['admin_id']))
+    return $_SESSION['admin_id'];
     else
     return null;
+}
+public function logout()
+{
+    if(isset($_SESSION['admin_id']))
+    {
+        unset($_SESSION['admin_id']);
+    return 1;
+}
+else
+return null;
+
 }
 }
 
