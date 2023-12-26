@@ -11,11 +11,12 @@ $data = json_decode(file_get_contents('php://input'), true);
 
 // $address->user_id=$data['user_id'];
 // $address->address=$data['address'];
-$address->user_id=88;
-$address->address='test adddress';
+$address->user_id=$data['user_id'];
+$address->address=$data['address'];
 $result=$address->insertAddress();
 		if($result==1){
-			$res_arr = array("status" 	=> true,"message" 	=> "Successfully Address was inserted !!","user_id"=>$address->user_id);
+			// "user_id"=>$address->user_id
+			$res_arr = array("status"=> true,"message" 	=> "Successfully Address was inserted !!");
 		}else if($result==2){
 			$res_arr = array("status" 	=> false,"message" 	=> "The Address was already exist!!");
 		}else{
