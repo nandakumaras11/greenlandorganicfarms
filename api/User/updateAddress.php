@@ -8,6 +8,7 @@ $database 		= new Database();
 $db 			= $database->getConnection();
 $address        = new Address($db);
 $res_arr		= array();
+// $data = json_decode(file_get_contents('php://input'), true);
 $_POST['address_id']=4;
 $_POST['address']="mani bhavan kottaram veedu  kottayam";
 $address->address_id=$_POST['address_id'];

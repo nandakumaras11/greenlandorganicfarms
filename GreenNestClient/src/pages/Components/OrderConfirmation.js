@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { useCart } from "react-use-cart";
@@ -8,7 +8,7 @@ import Manageaddress from "../Manageaddress";
 import "./OrderConfirmation.css";
 export const OrderConfirmation = () => {
   const { isEmpty, items, cartTotal } = useCart();
-  const savedAddress = useSelector((state) => state.user.address);
+  // const savedAddress = useSelector((state) => state.user.address);
   const loginCredentials = JSON.parse(localStorage.getItem("loginCredentials"));
   const user_id = loginCredentials.user_id;
   // const [address_id,setAddress] = useState();
@@ -55,6 +55,8 @@ export const OrderConfirmation = () => {
       <div className="product-headding">Confirm your location</div>
       <div className="address spacing">
         <Manageaddress handleAddress={handleAddress} radioState={true}/>
+
+        {/* <Editaddress /> */}
         {/* <textarea
           className="signInControl textArea"
           placeholder="Enter Your Address"
