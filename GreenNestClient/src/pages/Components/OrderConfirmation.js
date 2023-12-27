@@ -1,17 +1,26 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { useCart } from "react-use-cart";
 import { httpRequest } from "../../API/api";
 import ButtonComponent from "../../component/ButtonComponent";
+import Manageaddress from "../Manageaddress";
 import "./OrderConfirmation.css";
 export const OrderConfirmation = () => {
   const { isEmpty, items, cartTotal } = useCart();
   const savedAddress = useSelector((state) => state.user.address);
   const loginCredentials = JSON.parse(localStorage.getItem("loginCredentials"));
   const user_id = loginCredentials.user_id;
-  const [address, setAddress] = useState(savedAddress);
+  // const [address_id,setAddress] = useState();
+  var  address_id=-1;
   const [paymentMode, setPaymentMode] = useState("cod");
+  const handleAddress=(id)=>{
+     address_id=id;
+    //  setAddress(id)
+    console.log(address_id)
+   
+  }
+  
   const navigate = useNavigate();
   let completeOrder = () => {
     if (!isEmpty) {
@@ -20,23 +29,24 @@ export const OrderConfirmation = () => {
       });
       const data = {
         user_id: user_id,
-        address: address,
+        address_id: address_id,
         items: product,
         cartTotal: cartTotal,
         paymentMode: paymentMode,
         orderID:null
       };
       console.log(data);
-      httpRequest(data, "checkOut.php").then((respose) => {
-        if (respose && respose.status && paymentMode == "cod") {
-          //cod success
-          navigate("/OrderPlaced");
-        } else if (respose && respose.status && paymentMode == "Online") {
-          //cod success
-          data.orderID=respose.message;
-          navigate("/PayOnline", { state: data });
-        }
-      });
+      httpRequest(data, "checkOut.php").then(data=>console.log(data));
+      // .then((respose) => {
+      //   if (respose && respose.status && paymentMode == "cod") {
+      //     //cod success
+      //     navigate("/OrderPlaced");
+      //   } else if (respose && respose.status && paymentMode == "Online") {
+      //     //cod success
+      //     data.orderID=respose.message;
+      //     navigate("/PayOnline", { state: data });
+      //   }
+      // });
     }
 
   };
@@ -44,7 +54,8 @@ export const OrderConfirmation = () => {
     <div className="spacing categoryFilterContainer">
       <div className="product-headding">Confirm your location</div>
       <div className="address spacing">
-        <textarea
+        <Manageaddress handleAddress={handleAddress} radioState={true}/>
+        {/* <textarea
           className="signInControl textArea"
           placeholder="Enter Your Address"
           rows="4"
@@ -53,7 +64,7 @@ export const OrderConfirmation = () => {
           onChange={(event) => {
             setAddress(event.target.value);
           }}
-        ></textarea>
+        ></textarea> */}
       </div>
       <div className="product-headding spacing">Payment mode</div>
       <div className="payementModeDiv spacing">

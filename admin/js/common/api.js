@@ -241,6 +241,20 @@ $("#adminLogin").click(function (e) {
     })
 });
 
+// logoutBtn
+$("#logoutBtn").click(function (e) {
+    e.preventDefault();
+    API('User/logout.php', {}, (result) => {
+        if(result.status=='success')
+        showPopUpRedirect("Success","Successfuly Login","success");  //
+        else
+            showPopUpReload("Failed","Give correct phone number and password","error");
+        // location.reload();
+        humanReadMsg(result.message);
+     
+    })
+});
+
 
    function checkAdminAuthentication()
    {
@@ -252,11 +266,13 @@ $("#adminLogin").click(function (e) {
                 // showPopUpReload("Success",result.message,"success");
                 // console.log("session pakka");
                 // e.preventDefault();
-
+        }
+        else
+         {
+            admin_id=result.message;
+         console.log(admin_id);
         }
         // getProduct();
 
     })
    }
-
-// 

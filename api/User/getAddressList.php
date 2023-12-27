@@ -22,7 +22,7 @@ $result   = $address->addressDetailList();
 if(isset($result) && !empty($result)){
   $res_arr = $result;
 }else if(empty($result)){
-  $res_arr = array("status" => "failed", "message"=> "Empty Data !");
+  $res_arr = [];
 }
 echo json_encode($res_arr);
 ?>

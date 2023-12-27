@@ -5,58 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import "./Order.css";
 // import { Link } from "react-router-dom";
 
-const Manageaddress = () => {
-  const [address, setAddress] = useState([]);
-  useEffect(() => {
-    getAddress().then((data) => {
-      setAddress(data);
-    });
-  }, []);
-  const setAddressCallBack = (data) => {
-    console.log(address);
-    setAddress(data);
-  };
-  const [viewForm,setForm]=useState(false)
-  // console.log(viewForm)
-  // console.log(address)
-  const changeviewForm=()=>{
-    setForm(!viewForm);
-  }
-  return (
-    <>
-      {/* <h1>Manageaddress page</h1> */}
-      <div className="orderContainer">
-        
-        <div className={viewForm?"cancel":"orderDetails"}>
-          <div className="order_id font12" onClick={()=>setForm(!viewForm)}>
-            <b>
-          
-           {viewForm?( ""  ):(<span className="pointer"> <i className="fa fa-plus" aria-hidden="true" ></i>ADD A NEW ADDRESS</span> )}
 
-            </b>
-          </div>
-          {viewForm?<Addaddress  changeviewForm={changeviewForm} setAddressCallBack={setAddressCallBack}/>: ""}
-        </div> 
-        </div>
-      {address.map((oneAddress, index) => {
-        return (
-          <Oneaddress
-            key={index}
-            addressObj={oneAddress}
-            setAddressCallBack={setAddressCallBack}
-          />
-        );
-      }
-      )}
-    </>
-  )
-}
-
-export default Manageaddress;
-
-
-export const Oneaddress = ({ addressObj, setAddressCallBack }) => {
+export const Oneaddress = ({ addressObj, setAddressCallBack,handleAddress,radioState }) => {
   // let addressid=JSON.parse(addressObj.address_id)
+  if(radioState ==undefined)
+  radioState=false;
   const { address, address_id } = addressObj
   const deleteAddress = (event, address_id) => {
     httpRequest({ address_id }, "deleteAddress.php").then(() => {
@@ -66,15 +19,30 @@ export const Oneaddress = ({ addressObj, setAddressCallBack }) => {
     });
   }
   const editAddress = (event, address_id) => {
+  }
+  const handleRadioChange=(e)=>{
+    const selectedValue=e.target.value;
+    handleAddress(selectedValue);
 
   }
+  console.log(radioState)
   return (
     <>
       <div>
         <div className="orderContainer">
           <div className="orderDetails">
             <div className="order_id font12">
-              <b>ID:</b> {address_id}
+            {radioState ?
+            <div>  
+            <label htmlFor="addressRadio"></label>
+            <input type="radio" name="addressRadio" value={address_id} onChange={handleRadioChange}  id="addressRadio" />
+            {address_id}
+            
+          </div>:" "
+            }
+                
+                {/* </b>  */}
+
             </div>
             {/* <div className="totalAmount font12">
       <b>Total:</b> 
@@ -85,10 +53,10 @@ export const Oneaddress = ({ addressObj, setAddressCallBack }) => {
                 </textarea></b>
             </div>
             <div className="status font12" >
-              <i className="fa fa-pencil-square-o"
+              {/* <i className="fa fa-pencil-square-o"
                 onClick={(event) => {
                   editAddress(event, address_id)
-                }} aria-hidden="true"></i>
+                }} aria-hidden="true"></i> */}
             </div>
             <div className="status font12" >
               <i className="fa fa-trash-o" onClick={(event) => {
@@ -246,3 +214,52 @@ useEffect(() => {
 </>
   );
 }
+const Manageaddress = ({handleAddress,radioState}) => {
+  const [address, setAddress] = useState([]);
+  useEffect(() => {
+    getAddress().then((data) => {
+      setAddress(data);
+    });
+  }, []);
+  const setAddressCallBack = (data) => {
+    // console.log(address);
+    setAddress(data);
+  };
+  const [viewForm,setForm]=useState(false)
+  // console.log(viewForm)
+  // console.log(address)
+  const changeviewForm=()=>{
+    setForm(!viewForm);
+  }
+  return (
+    <>
+      {/* <h1>Manageaddress page</h1> */}
+      <div className="orderContainer">
+        
+        <div className={viewForm?"cancel":"orderDetails"}>
+          <div className="order_id font12" onClick={()=>setForm(!viewForm)}>
+            <b>
+          
+           {viewForm?( ""  ):(<span className="pointer"> <i className="fa fa-plus" aria-hidden="true" ></i>ADD A NEW ADDRESS</span> )}
+
+            </b>
+          </div>
+          {viewForm?<Addaddress  changeviewForm={changeviewForm} setAddressCallBack={setAddressCallBack}/>: ""}
+        </div> 
+        </div>
+      {address.map((oneAddress, index) => {
+        return (
+          <Oneaddress
+            key={index}
+            addressObj={oneAddress}
+            setAddressCallBack={setAddressCallBack}
+            handleAddress={handleAddress}
+            radioState={radioState}
+          />
+        );
+      }
+      )}
+    </>
+  )
+}
+export default Manageaddress;
