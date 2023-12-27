@@ -1,7 +1,7 @@
-import { useEffect, useState, useReducer, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { getAddress } from "./API";
 import { httpRequest } from "../API/api";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import "./Order.css";
 // import { Link } from "react-router-dom";
 
@@ -18,7 +18,6 @@ export const AddressCard = ({ key, addressObj, setAddress, handleAddress, radioS
       });
     });
   }
-  const [formVisibility, setFormVisibility] = useState()
   const [addressId, handleAddressId] = useState(-1);
   const [PriviousAddressValue, setEditAddress] = useState("");
 
@@ -71,7 +70,7 @@ export const AddressCard = ({ key, addressObj, setAddress, handleAddress, radioS
             </div>
           </div>
         </div>
-        {/* <EditAddressDetails key={key} PriviousAddressValue={PriviousAddressValue} addressId={addressId} /> */}
+        <EditAddressDetails key={key} PriviousAddressValue={PriviousAddressValue} addressId={addressId} setAddress={setAddress} />
       </div>
     </>
   )
@@ -161,14 +160,13 @@ export const CreateNewAddress = ({ toggleAddressForm, setAddress }) => {
     </>
   );
 }
-export const EditAddressDetails = ({ PriviousAddressValue, addressId }) => {
+export const EditAddressDetails = ({ PriviousAddressValue, addressId,setAddress }) => {
   const nameRef = useRef();
   const addressRef = useRef();
   const locationRef = useRef();
   const cityRef = useRef();
   const pincodeRef = useRef();
   const alterPhoneNoRef = useRef();
-
   useEffect(() => {
     nameRef.current.value = PriviousAddressValue[0] || ''
     addressRef.current.value = PriviousAddressValue[1] || ''
@@ -186,10 +184,11 @@ export const EditAddressDetails = ({ PriviousAddressValue, addressId }) => {
       'address_id': addressId,
       'address': addressValueObject
     }
-    console.log(addressValue)
-    httpRequest(addressValue, "updateAddress.php").then(data => console.log(data));
+    // console.log(addressValue)
+    httpRequest(addressValue, "updateAddress.php").then(() => getAddress().then((data) => {
+      setAddress(data)
+    }));
   }
-
   return (
     <>
       <div >
@@ -197,20 +196,17 @@ export const EditAddressDetails = ({ PriviousAddressValue, addressId }) => {
           <div className="flex-child">
             <input type="text" placeholder="Name" className="signInControl"
               ref={nameRef}
-              //  value={nameRef.current.value}
               name="name"
             />
           </div>
           <div className="flex-child">
             <input type="text" placeholder="Locality" className="signInControl"
               ref={locationRef}
-              //  value={locationRef.current.value}
               name="locality" />
           </div>
           <div className="flex-child">
             <input type="number" placeholder="Pincode" className="signInControl"
               ref={pincodeRef}
-              //  value={pincodeRef.current.value}
               name="pincode"
             />
           </div>
@@ -222,7 +218,6 @@ export const EditAddressDetails = ({ PriviousAddressValue, addressId }) => {
               placeholder="Enter Your Address(Area and Street)"
               rows="4"
               ref={addressRef}
-              // value={addressRef.current.value}
               name="address"
             ></textarea>
           </div>
@@ -231,14 +226,12 @@ export const EditAddressDetails = ({ PriviousAddressValue, addressId }) => {
           <div className="flex-child">
             <input type="text" placeholder="City/District/Town"
               ref={cityRef}
-              // value={cityRef.current.value}
               name="city"
               className="signInControl" />
           </div>
           <div className="flex-child">
             <input type="number" placeholder="Alternate Phone No (Optional)" className="signInControl"
               ref={alterPhoneNoRef}
-              // value={alterPhoneNoRef.current.value}
               name="altphoneno"
             />
           </div>
