@@ -3,11 +3,8 @@ import { getAddress } from "./API";
 import { httpRequest } from "../API/api";
 import { useSelector } from "react-redux";
 import "./Order.css";
-// import { Link } from "react-router-dom";
 
-
-export const AddressCard = ({ key, addressObj, setAddress, handleAddress, radioState }) => {
-  // let addressid=JSON.parse(addressObj.address_id)
+export const AddressCard = ({addressObj, setAddress,selectedAddressId, radioState }) => {
   if (radioState == undefined)
     radioState = false;
   const { address, address_id } = addressObj
@@ -18,7 +15,7 @@ export const AddressCard = ({ key, addressObj, setAddress, handleAddress, radioS
       });
     });
   }
-  const [addressId, handleAddressId] = useState(-1);
+  const [addressId, AddressIdForUpdation] = useState(-1);
   const [PriviousAddressValue, setEditAddress] = useState("");
 
   const editAddress = (event, address_id) => {
@@ -26,16 +23,12 @@ export const AddressCard = ({ key, addressObj, setAddress, handleAddress, radioS
       var str = data[0].address
       str = str.split("_")
       setEditAddress(str)
-      handleAddressId(address_id)
+      AddressIdForUpdation(address_id)
     });
-
   }
   const handleRadioChange = (e) => {
-    const selectedValue = e.target.value;
-    handleAddress(selectedValue);
-
+    selectedAddressId(e.target.value);
   }
-  // console.log(radioState)
   return (
     <>
       <div>
@@ -46,14 +39,11 @@ export const AddressCard = ({ key, addressObj, setAddress, handleAddress, radioS
                 <div>
                   <label htmlFor="addressRadio"></label>
                   <input type="radio" name="addressRadio" value={address_id} onChange={handleRadioChange} id="addressRadio" />
-                  {/* {address_id} */}
-
                 </div> : " "
               }
             </div>
             <div className="transaction_id font12">
               <b><textarea name="" value={address.replace(/_/g, " , ")} id="editAddressBox" cols="50" rows="5" readOnly>
-
               </textarea></b>
             </div>
             <div className="status font12" >
@@ -70,7 +60,7 @@ export const AddressCard = ({ key, addressObj, setAddress, handleAddress, radioS
             </div>
           </div>
         </div>
-        <EditAddressDetails key={key} PriviousAddressValue={PriviousAddressValue} addressId={addressId} setAddress={setAddress} />
+        <EditAddressDetails PriviousAddressValue={PriviousAddressValue} addressId={addressId} setAddress={setAddress} />
       </div>
     </>
   )
@@ -84,11 +74,12 @@ export const CreateNewAddress = ({ toggleAddressForm, setAddress }) => {
   const cityRef = useRef(null);
   const pincodeRef = useRef(null);
   const alterPhoneNoRef = useRef(null);
+  const landmarkRef = useRef(null);
+  const stateRef = useRef(null);
   const user_id = useSelector((state) => state.user.user_id);
   const addNewAddressHandler = (event) => {
-    var addressValueObject = [nameRef.current.value, addressRef.current.value, locationRef.current.value, cityRef.current.value, pincodeRef.current.value, alterPhoneNoRef.current.value]
+    var addressValueObject = [nameRef.current.value, addressRef.current.value, locationRef.current.value, cityRef.current.value, pincodeRef.current.value, alterPhoneNoRef.current.value,landmarkRef.current.value,stateRef.current.value]
     addressValueObject = addressValueObject.join('_')
-    // console.log(addressValueObject)
     const addressValue = {
       'user_id': user_id,
       'address': addressValueObject
@@ -106,46 +97,62 @@ export const CreateNewAddress = ({ toggleAddressForm, setAddress }) => {
       <div >
         <div className="orderDetails">
           <div className="flex-child">
-            <input type="text" placeholder="Name" className="signInControl"
+            <input type="text" placeholder="Name *" className="signInControl"
               ref={nameRef}
               name="name"
             />
           </div>
           <div className="flex-child">
-            <input type="text" placeholder="Locality" className="signInControl"
-              ref={locationRef}
-              name="locality" />
+            <input type="number" placeholder="Mobile Number *" className="signInControl"
+              ref={alterPhoneNoRef}
+              name="altphoneno"
+            />
           </div>
-          <div className="flex-child">
-            <input type="number" placeholder="Pincode" className="signInControl"
+        </div>
+        <div className="orderDetails">
+        <div className="flex-child">
+            <input type="number" placeholder="Pincode *" className="signInControl"
               ref={pincodeRef}
               name="pincode"
             />
           </div>
-        </div>
-        <div className="orderDetails">
-          <div className="address spacing address-txt-area">
-            <textarea
-              className="signInControl textArea txt-area"
-              placeholder="Enter Your Address(Area and Street)"
-              rows="4"
-              ref={addressRef}
-              name="address"
-            ></textarea>
+        <div className="flex-child">
+            <input type="text" placeholder="Locality / Area/ Street *" className="signInControl"
+              ref={locationRef}
+              name="locality" />
           </div>
         </div>
         <div className="orderDetails">
+        <div className="flex-child">
+            <input
+              className="signInControl "
+              placeholder="Building name / Falt number *"
+              ref={addressRef}
+              name="address"
+           />
+          </div>
           <div className="flex-child">
-            <input type="text" placeholder="City/District/Town"
+            <input type="text" placeholder="City/District *"
               ref={cityRef}
               name="city"
               className="signInControl" />
           </div>
+        </div>
+        {/* new  */}
+        <div className="orderDetails">
+        <div className="flex-child">
+            <input
+              className="signInControl "
+              placeholder="Landmark *"
+              ref={landmarkRef}
+              name="address"
+           />
+          </div>
           <div className="flex-child">
-            <input type="number" placeholder="Alternate Phone No (Optional)" className="signInControl"
-              ref={alterPhoneNoRef}
-              name="altphoneno"
-            />
+            <input type="text" placeholder="State *"
+              ref={stateRef}
+              name="city"
+              className="signInControl" />
           </div>
         </div>
         <div className="orderDetails">
@@ -167,6 +174,8 @@ export const EditAddressDetails = ({ PriviousAddressValue, addressId,setAddress 
   const cityRef = useRef();
   const pincodeRef = useRef();
   const alterPhoneNoRef = useRef();
+  const landmarkRef = useRef(null);
+  const stateRef = useRef(null);
   useEffect(() => {
     nameRef.current.value = PriviousAddressValue[0] || ''
     addressRef.current.value = PriviousAddressValue[1] || ''
@@ -174,17 +183,18 @@ export const EditAddressDetails = ({ PriviousAddressValue, addressId,setAddress 
     cityRef.current.value = PriviousAddressValue[3] || ''
     pincodeRef.current.value = PriviousAddressValue[4] || ''
     alterPhoneNoRef.current.value = PriviousAddressValue[5] || ''
+    landmarkRef.current.value=PriviousAddressValue[6] ||''
+    stateRef.current.value=PriviousAddressValue[7] || ''
   }, [PriviousAddressValue]);
 
   const updateAddressHandler = (event) => {
-    var addressValueObject = [nameRef.current.value, addressRef.current.value, locationRef.current.value, cityRef.current.value, pincodeRef.current.value, alterPhoneNoRef.current.value]
+    var addressValueObject = [nameRef.current.value, addressRef.current.value, locationRef.current.value, cityRef.current.value, pincodeRef.current.value, alterPhoneNoRef.current.value,landmarkRef.current.value,stateRef.current.value]
     addressValueObject = addressValueObject.join('_')
     console.log(addressValueObject)
     const addressValue = {
       'address_id': addressId,
       'address': addressValueObject
     }
-    // console.log(addressValue)
     httpRequest(addressValue, "updateAddress.php").then(() => getAddress().then((data) => {
       setAddress(data)
     }));
@@ -192,48 +202,64 @@ export const EditAddressDetails = ({ PriviousAddressValue, addressId,setAddress 
   return (
     <>
       <div >
-        <div className="orderDetails">
+      <div className="orderDetails">
           <div className="flex-child">
-            <input type="text" placeholder="Name" className="signInControl"
+            <input type="text" placeholder="Name *" className="signInControl"
               ref={nameRef}
               name="name"
             />
           </div>
           <div className="flex-child">
-            <input type="text" placeholder="Locality" className="signInControl"
-              ref={locationRef}
-              name="locality" />
+            <input type="number" placeholder="Mobile Number *" className="signInControl"
+              ref={alterPhoneNoRef}
+              name="altphoneno"
+            />
           </div>
-          <div className="flex-child">
-            <input type="number" placeholder="Pincode" className="signInControl"
+        </div>
+        <div className="orderDetails">
+        <div className="flex-child">
+            <input type="number" placeholder="Pincode *" className="signInControl"
               ref={pincodeRef}
               name="pincode"
             />
           </div>
-        </div>
-        <div className="orderDetails">
-          <div className="address spacing address-txt-area">
-            <textarea
-              className="signInControl textArea txt-area"
-              placeholder="Enter Your Address(Area and Street)"
-              rows="4"
-              ref={addressRef}
-              name="address"
-            ></textarea>
+        <div className="flex-child">
+            <input type="text" placeholder="Locality / Area/ Street *" className="signInControl"
+              ref={locationRef}
+              name="locality" />
           </div>
         </div>
         <div className="orderDetails">
+        <div className="flex-child">
+            <input
+              className="signInControl "
+              placeholder="Building name / Falt number *"
+              ref={addressRef}
+              name="address"
+           />
+          </div>
           <div className="flex-child">
-            <input type="text" placeholder="City/District/Town"
+            <input type="text" placeholder="City/District *"
               ref={cityRef}
               name="city"
               className="signInControl" />
           </div>
+        </div>
+        {/* new  */}
+        <div className="orderDetails">
+        <div className="flex-child">
+            <input
+              className="signInControl "
+              placeholder="Landmark *"
+              ref={landmarkRef}
+              name="address"
+           />
+          </div>
           <div className="flex-child">
-            <input type="number" placeholder="Alternate Phone No (Optional)" className="signInControl"
-              ref={alterPhoneNoRef}
-              name="altphoneno"
-            />
+            <input type="text" placeholder="State *"
+              ref={stateRef}
+              name="city"
+              className="signInControl" />
           </div>
         </div>
         <div className="orderDetails">
@@ -241,14 +267,15 @@ export const EditAddressDetails = ({ PriviousAddressValue, addressId,setAddress 
             <button className="cancelBtn" type="submit">Cancel</button>
           </div>
           <div className="flex-child">
-            <button className="saveBtn" type="submit" onClick={updateAddressHandler}>Save</button>
+            <button className="saveBtn" type="submit" onClick={updateAddressHandler}>Update</button>
           </div>
         </div>
        </div>
     </>
   );
 }
-const ManageAddress = ({ handleAddress, radioState }) => {
+
+const ManageAddress = ({ selectedAddressId, radioState }) => {
   const [addresses, setAddress] = useState([]);
   const [showAddressForm, toggleAddressForm] = useState(false);
   useEffect(() => {
@@ -275,7 +302,7 @@ const ManageAddress = ({ handleAddress, radioState }) => {
               key={index}
               addressObj={oneAddress}
               setAddress={setAddress}
-              handleAddress={handleAddress}
+              selectedAddressId={selectedAddressId}
               radioState={radioState}
             />
           </>

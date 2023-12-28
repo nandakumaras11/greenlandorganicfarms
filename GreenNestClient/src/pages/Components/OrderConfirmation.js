@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { useCart } from "react-use-cart";
@@ -7,20 +7,12 @@ import ButtonComponent from "../../component/ButtonComponent";
 import Manageaddress from "../Manageaddress";
 import "./OrderConfirmation.css";
 export const OrderConfirmation = () => {
-  const { isEmpty, items, cartTotal } = useCart();
-  // const savedAddress = useSelector((state) => state.user.address);
   const loginCredentials = JSON.parse(localStorage.getItem("loginCredentials"));
-  const user_id = loginCredentials.user_id;
-  // const [address_id,setAddress] = useState();
-  var  address_id=-1;
+  const [address_id, selectedAddressId] = useState();
   const [paymentMode, setPaymentMode] = useState("cod");
-  const handleAddress=(id)=>{
-     address_id=id;
-    //  setAddress(id)
-    console.log(address_id)
-   
-  }
-  
+  const { isEmpty, items, cartTotal } = useCart();
+  const user_id = useSelector((state) => state.user.user_id);
+  // const user_id = loginCredentials.user_id;
   const navigate = useNavigate();
   let completeOrder = () => {
     if (!isEmpty) {
@@ -33,40 +25,18 @@ export const OrderConfirmation = () => {
         items: product,
         cartTotal: cartTotal,
         paymentMode: paymentMode,
-        orderID:null
+        orderID: null
       };
-      console.log(data);
-      httpRequest(data, "checkOut.php").then(data=>console.log(data));
-      // .then((respose) => {
-      //   if (respose && respose.status && paymentMode == "cod") {
-      //     //cod success
-      //     navigate("/OrderPlaced");
-      //   } else if (respose && respose.status && paymentMode == "Online") {
-      //     //cod success
-      //     data.orderID=respose.message;
-      //     navigate("/PayOnline", { state: data });
-      //   }
-      // });
+      httpRequest(data, "checkOut.php").then(data => console.log(data));
     }
-
   };
   return (
     <div className="spacing categoryFilterContainer">
       <div className="product-headding">Confirm your location</div>
       <div className="address spacing">
-        <Manageaddress handleAddress={handleAddress} radioState={true}/>
+        <Manageaddress selectedAddressId={selectedAddressId} radioState={true} />
 
         {/* <Editaddress /> */}
-        {/* <textarea
-          className="signInControl textArea"
-          placeholder="Enter Your Address"
-          rows="4"
-          name="address"
-          value={address}
-          onChange={(event) => {
-            setAddress(event.target.value);
-          }}
-        ></textarea> */}
       </div>
       <div className="product-headding spacing">Payment mode</div>
       <div className="payementModeDiv spacing">
