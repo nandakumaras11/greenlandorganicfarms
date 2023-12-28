@@ -12,8 +12,7 @@ $db = $database->getConnection();
 $order = new Order($db);
 $res_arr = array();
 
-$userDetails=new User($db);
-
+// $userDetails=new User($db);
 
 $data = json_decode(file_get_contents('php://input'), true);
 $order->user_id = $data['user_id'];
@@ -24,19 +23,21 @@ $order->totalAmount = $data['cartTotal'];
 date_default_timezone_set("Asia/Kolkata");
 $order->dateOfOrder = date('d-m-Y H:i:s');
 $order->status = "pending";
-$orderPlaced= $order->placeOrder();
+$order->address_id = $data['address_id'];
 
-$userDetails->address=$data['address'];
-$userDetails->user_id=$data['user_id'];
-if($userDetails->updateAddress()==1)
-$addressStatus="Address Updated Successfuly";
-else
-$addressStatus="Address Updated Was Failed";
+$orderPlaced= $order->placeOrder();
+// address_id
+// $userDetails->address=$data['address'];
+// $userDetails->user_id=$data['user_id'];
+// if($userDetails->updateAddress()==1)
+// $addressStatus="Address Updated Successfuly";
+// else
+// $addressStatus="Address Updated Was Failed";
 if ($orderPlaced && $order->paymentMode == "cod") {
 
-    $res_arr = array("status" => $order->codSuccess(),"message" => "Order Placed.","addressStatus"=>$addressStatus);
+    $res_arr = array("status" => $order->codSuccess(),"message" => "Order Placed.");
 }
 else{
-    $res_arr = array("status" => $orderPlaced, "message" => $order->order_id,"addressStatus"=>$addressStatus);
+    $res_arr = array("status" => $orderPlaced, "message" => $order->order_id);
 }
 echo json_encode($res_arr);

@@ -22,8 +22,9 @@ class User
             return 2;
         } else {
             // return $this->isAlreadyExist();
-            $query = "INSERT INTO   " . $this->table_name . "(user_id,username,password,address,phone_no) VALUES('','" . $this->username . "','" . $this->password . "','" . $this->address . "','" . $this->phone_no . "')";
-// print_r($query);
+            $query = "INSERT INTO " . $this->table_name . "(user_id,username,password,address,phone_no) VALUES
+    ('','" . $this->username . "','" . $this->password . "','" . $this->address . "','" . $this->phone_no . "')";
+
             $stmt = $this->conn->prepare($query);
 
             if ($stmt->execute()) {
@@ -34,6 +35,7 @@ class User
         }
 
     }
+    
     public function authentication()
     {
         $query = "SELECT * FROM " . $this->table_name . " WHERE phone_no='" . $this->signInMobile . "' AND password='" . $this->signInPassword . "'";
@@ -59,17 +61,32 @@ class User
         }
 
     }
+    // public function authentication()
+    // {
+    //     $query = "SELECT "."phone_no,password"." FROM " . $this->table_name . " WHERE phone_no='" . $this->signInMobile . "' AND password='" . $this->signInPassword . "'";
+        
+    //     $stmt = $this->conn->prepare($query);
+    //     $stmt->execute();
+    //     if ($stmt->rowCount() > 1) {
+    //         return 2;
+    //     }
+    //     else if($stmt->rowCount() == 1){
+    //         return 1;
+    //     }
+    //     else
+    //     return -1;
+
+    // }
 
     public function isAlreadyExist()
     {
         $query = "SELECT * FROM " . $this->table_name . " WHERE phone_no='" . $this->phone_no."'";
-        // print_r($query);
         $stmt = $this->conn->prepare($query);
         // execute query
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
             // $this->user_id=$stmt->user_id;
-            // return 1;
+            // return 1; 
             return 2;
         } else {
             return 1;
@@ -94,34 +111,34 @@ class User
     //         return [];
     //     }
     // }
-    public function updateAddress()
-    {
-        $query = "UPDATE " . $this->table_name . " SET address='".$this->address."' WHERE user_id='".$this->user_id."'";
-    // print_r($query);
-    $stmt = $this->conn->prepare($query);
-    if($stmt->execute()){
-    return 1;
-    }
-    return false;
-    }
-    public function getAddress()
-    {
-        $query = "SELECT "."user_id,address,username,phone_no"." FROM " . $this->table_name . " WHERE user_id= " . $this->user_id;
-        // prepare query statement
-        $stmt = $this->conn->prepare($query);
-        // execute query
-        $stmt->execute();
+    // public function updateAddress()
+    // {
+    //     $query = "UPDATE " . $this->table_name . " SET address='".$this->address."' WHERE user_id='".$this->user_id."'";
+    // // print_r($query);
+    // $stmt = $this->conn->prepare($query);
+    // if($stmt->execute()){
+    // return 1;
+    // }
+    // return false;
+    // }
+    // public function getAddress()
+    // {
+    //     $query = "SELECT "."user_id,address,username,phone_no"." FROM " . $this->table_name . " WHERE user_id= " . $this->user_id;
+    //     // prepare query statement
+    //     $stmt = $this->conn->prepare($query);
+    //     // execute query
+    //     $stmt->execute();
 
-        if ($stmt->rowCount() > 0) {
-            $stmt->setFetchMode(PDO::FETCH_ASSOC);
-            while ($row = $stmt->fetch()) {
-                $res[] = $row;
-            }
-            return $res;
-        } else {
-            return [];
-        }  
-    }
+    //     if ($stmt->rowCount() > 0) {
+    //         $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    //         while ($row = $stmt->fetch()) {
+    //             $res[] = $row;
+    //         }
+    //         return $res;
+    //     } else {
+    //         return [];
+    //     }  
+    // }
 
    
 // function updateProduct()

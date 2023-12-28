@@ -5,8 +5,14 @@ export const getOrder = () => {
   if (loginCredentials != null)
     return httpRequest({ user_id: loginCredentials.user_id }, "getOrder.php");
 };
+// export const getAddress = () => {
+//   const loginCredentials = JSON.parse(localStorage.getItem("loginCredentials"));
+//   if (loginCredentials != null)
+//     return httpRequest({ user_id: loginCredentials.user_id }, "getAddress.php");
+// };
 export const getAddress = () => {
   const loginCredentials = JSON.parse(localStorage.getItem("loginCredentials"));
   if (loginCredentials != null)
-    return httpRequest({ user_id: loginCredentials.user_id }, "getAddress.php");
+    return httpRequest({ user_id: loginCredentials.user_id }, "getAddressList.php");
 };
+// dropAddress

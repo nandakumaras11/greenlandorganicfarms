@@ -32,21 +32,20 @@ function API_JSON(url, data, successCallBack) {
 $("#saveProduct").click(function (e) {
     e.preventDefault();
     API('User/createProduct.php', new FormData($("#my_form")[0]), (result) => {
-        // console.log(result)
-        // location.reload();
-        humanReadMsg(result.message);
-        getProduct();
+        console.log(result);
+        if (result.status == "success")
+            showPopUpReload("Success", result.message, "success");
+        else
+            showPopUpReload("Error", result.message, "error");
+        // getProduct();
 
     })
 });
-
 var allProducts = [];
 
 let getProduct = () => {
     $("#productTable").dataTable();
     return new Promise((resolve, reject) => {
-        // productTableBody
-
         API("User/getProductList.php", {}, (response) => {
 
             allProducts = response;
@@ -57,13 +56,11 @@ let getProduct = () => {
                 $("#productTableBody").append("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td><img style='width: 150px;height: 100px;' src='../api/User/images/{3}' alt='product-img'/></td><td>{4}</td><td>{5}</td><td><i type='button' data-toggle='modal' data-target='#exampleModalCenter' class='fa fa-pencil-square-o editProduct' aria-hidden='true' id={6} ></i></td><td><i class='fa fa-trash-o deleteProduct' aria-hidden='true' id={6} ></i></td></tr>".format(count, element.product_name, element.category, element.product_img, element.old_price, element.selling_price, element.product_id));
                 count = count + 1;
             });
+
             $(".deleteProduct").unbind().click(function (e) {
                 e.preventDefault();
                 var product_id = this.getAttribute("id");
-                API_JSON("User/deleteProduct.php", { 'product_id': product_id }, (result) => {
-                    location.reload();
-                    // getProduct();
-                })
+                API_JSON("User/deleteProduct.php", { 'product_id': product_id }, location.reload());
             });
             $(".editProduct").click(function (e) {
                 e.preventDefault();
@@ -82,6 +79,11 @@ let getProduct = () => {
                         $("#plantCareRadioBtn").prop("checked", true);
 
                     $('#productname').val(result[0].product_name);
+                    $('#old_producttag').val(JSON.stringify(result[0].product_tags))
+                    //    console.log()
+                    // $("#new_image").val(imagename)
+                    $("#old_image").val(result[0].product_img)
+
 
                     $('#oldprice').val(result[0].old_price);
                     $('#sellingprice').val(result[0].selling_price);
@@ -106,18 +108,27 @@ $("#editProduct").click(function (e) {
         // console.log(result)
         location.reload();
         humanReadMsg(result.message);
-        getProduct();
+
+        // getProduct();
 
     })
+    location.reload(true);   // refresh window
+
+    // close_btn
 });
 // edit product end
 //gallery or banner
 $("#saveGallery").click(function (e) {
     e.preventDefault();
     API('User/createGallery.php', new FormData($("#my_form")[0]), (result) => {
-        // console.log(result)
+        // console.log(result);
+
+        if (result.status == "success")
+            showPopUp("Success", "Successfuly Inserted!", "success");
+        else
+            showPopUp("Error", "Something went wrong.Please try again!", "error");
         // location.reload();
-        humanReadMsg(result.message);
+        // humanReadMsg(result.message);
         getGallery();
 
     })
@@ -134,7 +145,34 @@ let getGallery = () => {
         $(".deleteGallery").unbind("click").click(function (e) {
             e.preventDefault();
             var gallery_id = this.getAttribute("id");
-            API_JSON("User/deleteGallery.php", { 'galleryId': gallery_id }, getGallery, () => { })
+            API_JSON("User/deleteGallery.php", { 'galleryId': gallery_id }, (result) => {
+                if (result.status == "success")
+                    showPopUp("Success", "Successfuly Deleted", "success");
+                else
+                    showPopUp("Error", "Something went wrong.Please try again!", "error");
+
+                // if(result.status=="success")
+                // {
+                //     showPopUp("Success","Successfuly Deleted","Ok");
+                // swal({
+                //     title: "Success",
+                //     text: "Successfuly Deleted!",
+                //     type: "success",
+                //     confirmButtonText: "OK"
+                //   });
+
+                // }
+                // else
+                //     showPopUp("Error","Something went wrong.Please try again!","Ok");
+                // swal({
+                //     title: "Error",
+                //     text: "Something went wrong.Please try again!",
+                //     type: "error",
+                //     confirmButtonText: "OK"
+                //   });
+
+                getGallery();
+            })
         });
 
         $('#galleryTable').DataTable({ pageLength: 5, lengthMenu: [[5, 10, 20], [5, 10, 20]] });
@@ -197,11 +235,46 @@ $("#saveStatusChange").click(function (e) {
 });
 $("#adminLogin").click(function (e) {
     e.preventDefault();
-    API('User/userAuthentication.php', new FormData($("#my_form")[0]), (result) => {
-        console.log(result)
+    API('User/adminAutentication.php', new FormData($("#my_form1")[0]), (result) => {
+        if (result.status == 'success')
+            showPopUpRedirect("Success", "Successfuly Login", "success");  //
+        else
+            showPopUpReload("Failed", "Give correct phone number and password", "error");
         // location.reload();
         humanReadMsg(result.message);
 
     })
 });
 
+// logoutBtn
+$("#logoutBtn").click(function (e) {
+    e.preventDefault();
+    API('User/logout.php', {}, (result) => {
+        if (result.status == 'success')
+            showPopUpRedirect("Success", "Successfuly Login", "success");  //
+        else
+            showPopUpReload("Failed", "Give correct phone number and password", "error");
+        // location.reload();
+        humanReadMsg(result.message);
+
+    })
+});
+
+
+function checkAdminAuthentication() {
+    API('User/isloginornot.php', {}, (result) => {
+        console.log(result);
+        if (result.status == "failed") {
+            window.location.replace(indexPage);
+            // showPopUpReload("Success",result.message,"success");
+            // console.log("session pakka");
+            // e.preventDefault();
+        }
+        else {
+            admin_id = result.message;
+            console.log(admin_id);
+        }
+        // getProduct();
+
+    })
+}

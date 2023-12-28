@@ -3,12 +3,12 @@
 // header("Access-Control-Allow-Origin: *");
 class Database{
 
-    // private $host = "localhost";
+    private $host = "localhost";
+    //private $host = "http://greenlandorganicfarms.com/";
     // private $db_name = "greenlan_db";
 	// private $username = "greenlan_user";
     // private $password = "Vazha@2001";
-    private $host = "localhost";
-    private $db_name = "greennest";
+    private $db_name = "green_nest_new";
 	private $username = "root";
     private $password = "";
     public $conn;

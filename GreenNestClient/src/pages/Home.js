@@ -68,7 +68,7 @@ export default function Home() {
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    console.log(user);
+    // console.log(user);
     const loginCredentials = JSON.parse(localStorage.getItem("loginCredentials"));
     if (loginCredentials != null)
       dispatch(setUserLoginStatus(loginCredentials));

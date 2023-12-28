@@ -18,6 +18,7 @@ class Order
     public $status;
     public $paymentMode;
     public $orderMessage;
+    public $address_id;
     // constructor with $db as database connection
     public function __construct($db)
     {
@@ -26,10 +27,13 @@ class Order
     public function placeOrder()
     {
         $query = "INSERT INTO
-                    " . $this->table_name . "(order_id,user_id,product_id,totalAmount,dateOfOrder,transaction_id,status,paymentMode,orderMessage) VALUES
-                    ('" . $this->order_id . "','" . $this->user_id . "','" . $this->product_id . "','" . $this->totalAmount . "','" . $this->dateOfOrder . "','" . $this->transaction_id . "','" . $this->status . "','" . $this->paymentMode . "','')";
-
+                    " . $this->table_name . "(order_id,user_id,product_id,totalAmount,dateOfOrder,transaction_id,status,paymentMode,orderMessage,address_id) VALUES
+                    ('" . $this->order_id . "','" . $this->user_id . "','" . $this->product_id . "','" . $this->totalAmount . "','" . $this->dateOfOrder . "','" . $this->transaction_id . "','" . $this->status . "','" . $this->paymentMode ."', '" . "','" . $this->address_id."')";
+// echo $query;
+// echo "inside place order"
         $stmt = $this->conn->prepare($query);
+        // print_r($stmt);
+
         if ($stmt->execute()) {
             $this->order_id = $this->conn->lastInsertId();
             // echo $this->order_id;

@@ -3,415 +3,218 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>Admin</title>
-  <link rel="shortcut icon" type="image/x-icon" href="./images/icon.jpg" />
-  <link rel="stylesheet" href="./css/bootstrap.min.css">
-  <link rel="stylesheet" href="./css/style4.css">
+    <title>Admin</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./images/icon.jpg" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style4.css">
 
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.0/bootstrap-table.min.css"> -->
-  <link rel="stylesheet" href="./css/jquery.dataTables.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!-- Font Awesome JS -->
-  <!-- <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.0/bootstrap-table.min.css"> -->
+    <link rel="stylesheet" href="./css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Font Awesome JS -->
+    <!-- <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
         integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
         crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
         integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
         crossorigin="anonymous"></script> -->
-  <link rel="stylesheet" type="text/css" href="./css/datatables.min.css" />
-  <!-- <link rel="stylesheet" href="./css/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="./css/datatables.min.css" />
+    <!-- <link rel="stylesheet" href="./css/bootstrap.min.css"> -->
 
 </head>
 
 <body>
 
-  <div class="wrapper">
-    <!-- Sidebar  -->
-    <nav id="sidebar" class="active">
-    </nav>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar" class="active">
+        </nav>
 
-    <!-- Page Content  -->
-    <div id="content">
+        <!-- Page Content  -->
+        <div id="content">
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid" style="padding-left: 0px;">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid" style="padding-left: 0px;">
 
-          <button type="button" id="sidebarCollapse" class="btn btn-info">
-            <i class="fa fa-bars"></i>
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fa fa-bars"></i>
 
-            <!-- <span>Toggle Sidebar</span> -->
-          </button>
-          <div class="humanReadMsg" style="
+                        <!-- <span>Toggle Sidebar</span> -->
+                    </button>
+                    <div class="humanReadMsg" style="
                     width: 100%;
                     text-align: center;
                     color: red;
                 "></div>
-          <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <i class="fas fa-align-justify"></i>
-          </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-          </div>
-          <!-- <a href="./galleryPanel.html">
+                    </div>
+                    <!-- <a href="./galleryPanel.html">
                          <button type="button" class="btn btn-primary" data-toggle="modal"
                             data-target="#exampleModalCenter">
                             Gallery
                         </button></a> -->
+                </div>
+            </nav>
+
+
+
+
+            <div class="rightContent">
+                <div class="card" style="padding: 2%; margin-top: 2%;">
+                    <h4>Product Details <a href="addProduct.html">
+                            <button class="btn btn-primary align-right">Add Product</button>
+                        </a></h4>
+                    <table class="table table-striped" id="productTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">img</th>
+                                <th scope="col">old_price</th>
+                                <th scope="col">selling_price</th>
+                                <!-- <th scope="col">Tags</th> -->
+                                <th scope="col">Edit</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productTableBody">
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
         </div>
-      </nav>
-
-
-
-
-      <div class="rightContent">
-        <div class="card" style="padding: 2%; margin-top: 2%;">
-          <h4>Product Details <a href="addProduct.html">
-              <button class="btn btn-primary align-right">Add Product</button>
-            </a></h4>
-          <table class="table table-striped" id="productTable">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Category</th>
-                <th scope="col">img</th>
-                <th scope="col">old_price</th>
-                <th scope="col">selling_price</th>
-                <!-- <th scope="col">Tags</th> -->
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>  
-              </tr>
-            </thead>
-            <tbody id="productTableBody">
- 
-
-            </tbody>
-          </table>
-        </div>
-
-      </div>
     </div>
-  </div>
 
 
-<!-- edit Modal popup start -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" style="max-width: 98%;"role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Edit Product</h5>
-        <div class="humanReadMsg"></div>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-    
-        <!-- <div class="rightContent"> -->
-          <!-- <div class="card" style="padding: 2%;"> -->
-          
-              <form name="my_form" id="my_form" accept-charset="multipart/form-data">
+    <!-- edit Modal popup start -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 98%;" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Edit Product</h5>
+                    <div class="humanReadMsg"></div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
 
-             <div class="col-12">
-             
-             </div>
-                  
-                  <div class="form-row">
-                      <div class="form-group col-md-12">
-                          <label >Category</label> <br>
-                          <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="category" value="plants"
-                                id="plantsRadioBtn" value="option1">
-                            <label class="form-check-label" for="inlineRadio1">Plants</label>
+                    <!-- <div class="rightContent"> -->
+                    <!-- <div class="card" style="padding: 2%;"> -->
+
+                    <form name="my_form" id="my_form" enctype="multipart/form-data">
+
+                        <div class="col-12">
+
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="category" value="seeds"
-                                id="seedsRadioBtn" value="option2">
-                            <label class="form-check-label" for="inlineRadio2">Seeds</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="category" value="planters"
-                                id="plantersRadioBtn" value="option1">
-                            <label class="form-check-label" for="inlineRadio1">Planters</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="category" value="plantcares"
-                                id="plantCareRadioBtn" >
-                            <label class="form-check-label" for="inlineRadio2">Plant Cares</label>
-                        </div>
-                      </div>
-<input type="hidden" name="product_id"  id="product_id">
-<!-- planters start  -->
-<div class="col-12" id="planterstag">
-    <div class="col-12">
-        <h5>Product Tag's</h5>
-    </div>
-    <div class="col-12">
 
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="product_tags[]" value="PLASTIC_PLANTERS"
-                id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-                PLASTIC PLANTERS
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="product_tags[]" value="CERAMIC_PLANTERS"
-                id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-                CERAMIC PLANTERS
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="product_tags[]" value="METAL_PLANTERS"
-                id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-                METAL PLANTERS
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="product_tags[]" value="HANGING_PLANTERS"
-                id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-                HANGING PLANTERS
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="product_tags[]" value="PLANT_STANDS"
-                id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-                PLANT STANDS
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="product_tags[]" value="ZURI_COLLECTION"
-                id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-                ZURI COLLECTION
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="product_tags[]" value="SEEDLING_TRAYYS"
-                id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-                SEEDLING TRAYYS
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="product_tags[]"
-                value="BEST_SELLER" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-                BEST SELLER
-            </label>
-        </div>
-
-    </div>
-</div>
-<!-- plantes end  -->
-<!-- plant care start  -->
-<div class="col-12" id="plantcarestags">
-    <div class="col-12">
-        <h5>Product Tag's</h5>
-    </div>
-    <div class="col-12">
-
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="product_tags[]" value="POTTING_MIX_AND_FERTILISERS"
-                id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-                POTTING MIX AND FERTILISERS
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="product_tags[]" value="GARDEN_TOOLS"
-                id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-                GARDEN TOOLS
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="product_tags[]" value="WATERING_CANS_AND_SPRAYERS"
-                id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-                WATERING CANS AND SPRAYERS
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="product_tags[]" value="GARDEN_DECOR_&_ACCESSORIES"
-                id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-                GARDEN DECOR & ACCESSORIES
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="product_tags[]" value="PEST_CONTROL"
-                id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-                PEST CONTROL
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="product_tags[]"
-                value="BEST_SELLER" id="defaultCheck1">
-            <label class="form-check-label" for="defaultCheck1">
-                BEST SELLER
-            </label>
-        </div>
-
-    </div>
-</div>
-<!-- plant care end  -->
-  <!-- SEEDS TAG START  -->
-
-                            <!-- PRODUCT category Tag START -->
-
-
-                            <div class="col-12" id="seedstag">
-                                <div class="col-12">
-                                    <h4>Product Tag's</h4>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label>Category</label> <br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="category" value="plants"
+                                        id="plantsRadioBtn" value="option1">
+                                    <label class="form-check-label" for="inlineRadio1">Plants</label>
                                 </div>
-                                <div class="col-12">
-
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="product_tags[]" value="FLOWER_SEEDS"
-                                            id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            FLOWER SEEDS
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="product_tags[]" value=" VEGETABLE_SEEDS"
-                                            id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            VEGETABLE SEEDS
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="product_tags[]" value="MICROGREEN_SEEDS"
-                                            id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            MICROGREEN SEEDS
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="product_tags[]" value="HERD_SEEDS"
-                                            id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            HERD SEEDS
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="product_tags[]" value="FLOWER_BULBS"
-                                            id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            FLOWER BULBS
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="product_tags[]" value="FRUIT_SEEDS"
-                                            id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            FRUIT SEEDS
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="product_tags[]" value="BEST_SELLER"
-                                            id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                           Bestseller
-                                        </label>
-                                    </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="category" value="seeds"
+                                        id="seedsRadioBtn" value="option2">
+                                    <label class="form-check-label" for="inlineRadio2">Seeds</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="category" value="planters"
+                                        id="plantersRadioBtn" value="option1">
+                                    <label class="form-check-label" for="inlineRadio1">Planters</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="category" value="plantcares"
+                                        id="plantCareRadioBtn">
+                                    <label class="form-check-label" for="inlineRadio2">Plant Cares</label>
                                 </div>
                             </div>
-
-
-                          <!-- SEEDS TAGS END  -->
-                          <!-- PRODUCT category Tag START -->
-
-                          <div class="col-12" id="planttags">
-                            <h4>PRODUCT TAG'S</h4>
-                            <div class="col-12 prooduct-tag-container">
-
-                                <div class="col-3">
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="product_tags[]" type="checkbox"
-                                            value="INDOOR_PLANTS" id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            INDOOR PLANTS
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="product_tags[]" type="checkbox"
-                                            value="FLOWERING_PLANTS" id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            FLOWERING PLANTS
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" name="product_tags[]" type="checkbox"
-                                            value="AIRPURIFYING_PLANTS" id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            AIRPURIFYING PLANTS
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="product_tags[]"
-                                            value="LOW_LIGHTPLANTS" id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            LOW LIGHTPLANTS
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="product_tags[]"
-                                            value="BUNDLES" id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            BUNDLES
-                                        </label>
-                                    </div>
+                            <input type="hidden" name="product_id" id="product_id">
+                            <!-- planters start  -->
+                            <div class="col-12" id="planterstag">
+                                <div class="col-12">
+                                    <h5>Product Tag's</h5>
                                 </div>
-                                <!-- right container  -->
-                                <div class="col-4">
+                                <div class="col-12">
+
+                                    <input type="text" id="old_producttag" name="old_producttag">
+
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="product_tags[]"
-                                            value="HANGING_PLANTS" id="defaultCheck1">
+                                        <input class="form-check-input" type="checkbox" name="new_product_tags[]"
+                                            value="PLASTIC_PLANTERS" id="defaultCheck1">
                                         <label class="form-check-label" for="defaultCheck1">
-                                            HANGING PLANTS
+                                            PLASTIC PLANTERS
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="product_tags[]"
-                                            value="CACTI_AND_SUCCULENTS" id="defaultCheck1">
+                                        <input class="form-check-input" type="checkbox" name="new_product_tags[]"
+                                            value=" CERAMIC_PLANTERS" id="defaultCheck1">
                                         <label class="form-check-label" for="defaultCheck1">
-                                            CACTI AND SUCCULENTS
+                                            CERAMIC PLANTERS
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="product_tags[]"
-                                            value="MEDICINAL_&_AROMATIC_PLANTS" id="defaultCheck1">
+                                        <input class="form-check-input" type="checkbox" name="new_product_tags[]"
+                                            value="METAL_PLANTERS" id="defaultCheck1">
                                         <label class="form-check-label" for="defaultCheck1">
-                                            MEDICINAL&AROMATIC PLANTS
+                                            METAL PLANTERS
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="product_tags[]"
-                                            value="BEGINNERFRIENDLY_PLANTS" id="defaultCheck1">
+                                        <input class="form-check-input" type="checkbox" name="new_product_tags[]"
+                                            value="HANGING_PLANTERS" id="defaultCheck1">
                                         <label class="form-check-label" for="defaultCheck1">
-                                            BEGINNERFRIENDLY PLANTS
+                                            HANGING PLANTERS
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="product_tags[]"
-                                            value="NEW_ARRIVALS" id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            NEW ARRIVALS
-                                        </label>
+                                        <<<<<<< HEAD <input class="form-check-input" type="checkbox"
+                                            name="product_tags[]" value="PLANT_STANDS"=======<input
+                                            class="form-check-input" type="checkbox" name="new_product_tags[]"
+                                            value="PLANT_STANDS">>>>>>> project_modification_Dec9
+                                            id="defaultCheck1">
+                                            <label class="form-check-label" for="defaultCheck1">
+                                                PLANT STANDS
+                                            </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <<<<<<< HEAD <input class="form-check-input" type="checkbox"
+                                            name="product_tags[]" value="ZURI_COLLECTION"=======<input
+                                            class="form-check-input" type="checkbox" name="new_product_tags[]"
+                                            value="ZURI_COLLECTION">>>>>>> project_modification_Dec9
+                                            id="defaultCheck1">
+                                            <label class="form-check-label" for="defaultCheck1">
+                                                ZURI COLLECTION
+                                            </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <<<<<<< HEAD <input class="form-check-input" type="checkbox"
+                                            name="product_tags[]" value="SEEDLING_TRAYYS"=======<input
+                                            class="form-check-input" type="checkbox" name="new_product_tags[]"
+                                            value="SEEDLING_TRAYYS">>>>>>> project_modification_Dec9
+                                            id="defaultCheck1">
+                                            <label class="form-check-label" for="defaultCheck1">
+                                                SEEDLING TRAYYS
+                                            </label>
                                     </div>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="product_tags[]"
@@ -422,147 +225,535 @@
                                     </div>
 
                                 </div>
-                                <div class="col-5">
-                                    <h5> SHOP BY LOCATION</h5>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="product_tags[]"
-                                            value="BALCON" id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            BALCON
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="product_tags[]"
-                                            value="WORKSPACE" id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            WORKSPACE
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="product_tags[]"
-                                            value="LIVING_ROOM" id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            LIVING ROOM
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="product_tags[]"
-                                            value="BEDROOM" id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            BEDROOM
-                                        </label>
-                                    </div>
+                            </div>
+                            <!-- plantes end  -->
+                            <!-- plant care start  -->
+                            <div class="col-12" id="plantcarestags">
+                                <div class="col-12">
+                                    <h5>Product Tag's</h5>
                                 </div>
+                                <div class="col-12">
 
+                                    <div class="form-check">
+                                        <<<<<<< HEAD <input class="form-check-input" type="checkbox"
+                                            name="product_tags[]" value="POTTING_MIX_AND_FERTILISERS"=======<input
+                                            class="form-check-input" type="checkbox" name="new_product_tags[]"
+                                            value="POTTING_MIX_AND_FERTILISERS">>>>>>> project_modification_Dec9
+                                            id="defaultCheck1">
+                                            <label class="form-check-label" for="defaultCheck1">
+                                                POTTING MIX AND FERTILISERS
+                                            </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <<<<<<< HEAD <input class="form-check-input" type="checkbox"
+                                            name="product_tags[]" value="GARDEN_TOOLS"=======<input
+                                            class="form-check-input" type="checkbox" name="new_product_tags[]"
+                                            value="GARDEN_TOOLS">>>>>>> project_modification_Dec9
+                                            id="defaultCheck1">
+                                            <label class="form-check-label" for="defaultCheck1">
+                                                GARDEN TOOLS
+                                            </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <<<<<<< HEAD <input class="form-check-input" type="checkbox"
+                                            name="product_tags[]" value="WATERING_CANS_AND_SPRAYERS"=======<input
+                                            class="form-check-input" type="checkbox" name="new_product_tags[]"
+                                            value="WATERING_CANS_AND_SPRAYERS">>>>>>> project_modification_Dec9
+                                            id="defaultCheck1">
+                                            <label class="form-check-label" for="defaultCheck1">
+                                                WATERING CANS AND SPRAYERS
+                                            </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <<<<<<< HEAD <input class="form-check-input" type="checkbox"
+                                            name="product_tags[]" value="GARDEN_DECOR_&_ACCESSORIES"=======<input
+                                            class="form-check-input" type="checkbox" name="new_product_tags[]"
+                                            value="GARDEN_DECOR_&_ACCESSORIES">>>>>>> project_modification_Dec9
+                                            id="defaultCheck1">
+                                            <label class="form-check-label" for="defaultCheck1">
+                                                GARDEN DECOR & ACCESSORIES
+                                            </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <<<<<<< HEAD <input class="form-check-input" type="checkbox"
+                                            name="product_tags[]" value="PEST_CONTROL"=======<input
+                                            class="form-check-input" type="checkbox" name="new_product_tags[]"
+                                            value="PEST_CONTROL">>>>>>> project_modification_Dec9
+                                            id="defaultCheck1">
+                                            <label class="form-check-label" for="defaultCheck1">
+                                                PEST CONTROL
+                                            </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="product_tags[]"
+                                            value="BEST_SELLER" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                            BEST SELLER
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- plant care end  -->
+                            <!-- SEEDS TAG START  -->
+
+                            <!-- PRODUCT category Tag START -->
+
+
+                            <div class="col-12" id="seedstag">
+                                <div class="col-12">
+                                    <h4>Product Tag's</h4>
+                                </div>
+                                <div class="col-12">
+
+                                    <<<<<<< HEAD <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="product_tags[]"
+                                            value="FLOWER_SEEDS" id="defaultCheck1">
+                                        <label class="form-check-label" for="defaultCheck1">
+                                            FLOWER SEEDS
+                                        </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="product_tags[]"
+                                        value=" VEGETABLE_SEEDS" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        VEGETABLE SEEDS
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="product_tags[]"
+                                        value="MICROGREEN_SEEDS" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        MICROGREEN SEEDS
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="product_tags[]"
+                                        value="HERD_SEEDS" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        HERD SEEDS
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="product_tags[]"
+                                        value="FLOWER_BULBS" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        FLOWER BULBS
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="product_tags[]"
+                                        value="FRUIT_SEEDS" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        FRUIT SEEDS
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="product_tags[]"
+                                        value="BEST_SELLER" id="defaultCheck1">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        Bestseller
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                          <!-- category tag end  -->
+                        =======
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="new_product_tags[]"
+                                value="FLOWER_SEEDS" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                FLOWER SEEDS
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="new_product_tags[]"
+                                value="VEGETABLE_SEEDS" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                VEGETABLE SEEDS
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="new_product_tags[]"
+                                value="MICROGREEN_SEEDS" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                MICROGREEN SEEDS
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="new_product_tags[]" value="HERD_SEEDS"
+                                id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                HERD SEEDS
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="new_product_tags[]"
+                                value="FLOWER_BULBS" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                FLOWER BULBS
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="new_product_tags[]"
+                                value="FRUIT_SEEDS" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                FRUIT SEEDS
+                            </label>
+                        </div>
 
-                      <div class="form-group col-md-3">
-                          <label for="inputEmail4">Product Name</label>
-                          <input type="text" class="form-control" value="" name="product_name" id="productname">
-                      </div>
-                      <div class="form-group col-md-3">
-                        <label for="inputEmail4">Image</label>
-                        <input type="file" name="image" class="form-control-file" value="" id="image">
+                </div>
+            </div>
+            >>>>>>> project_modification_Dec9
+
+
+            <!-- SEEDS TAGS END  -->
+            <!-- PRODUCT category Tag START -->
+
+            <div class="col-12" id="planttags">
+                <h4>PRODUCT TAG'S</h4>
+                <div class="col-12 prooduct-tag-container">
+
+                    <<<<<<< HEAD <div class="col-3">
+                        <div class="form-check">
+                            <input class="form-check-input" name="product_tags[]" type="checkbox" value="INDOOR_PLANTS"
+                                id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                INDOOR PLANTS
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" name="product_tags[]" type="checkbox"
+                                value="FLOWERING_PLANTS" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                FLOWERING PLANTS
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" name="product_tags[]" type="checkbox"
+                                value="AIRPURIFYING_PLANTS" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                AIRPURIFYING PLANTS
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="product_tags[]"
+                                value="LOW_LIGHTPLANTS" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                LOW LIGHTPLANTS
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="product_tags[]" value="BUNDLES"
+                                id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                BUNDLES
+                            </label>
+                        </div>
+                </div>
+                <!-- right container  -->
+                <div class="col-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="product_tags[]" value="HANGING_PLANTS"
+                            id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            HANGING PLANTS
+                        </label>
                     </div>
-                      <div class="form-group col-md-3">
-                          <label for="inputEmail4">Old Price</label>
-                          <input type="text" class="form-control" name="old_price" id="oldprice">
-                      </div>
-                      <div class="form-group col-md-3">
-                          <label for="inputEmail4">Selling Price</label>
-                          <input type="text" class="form-control" name="selling_price" id="sellingprice">
-                      </div>
-                      <!-- <div class="form-group col-md-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="product_tags[]"
+                            value="CACTI_AND_SUCCULENTS" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            CACTI AND SUCCULENTS
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="product_tags[]"
+                            value="MEDICINAL_&_AROMATIC_PLANTS" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            MEDICINAL&AROMATIC PLANTS
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="product_tags[]"
+                            value="BEGINNERFRIENDLY_PLANTS" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            BEGINNERFRIENDLY PLANTS
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="product_tags[]" value="NEW_ARRIVALS"
+                            id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            NEW ARRIVALS
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="product_tags[]" value="BEST_SELLER"
+                            id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            BEST SELLER
+                        </label>
+                    </div>
+
+                </div>
+                <div class="col-5">
+                    <h5> SHOP BY LOCATION</h5>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="product_tags[]" value="BALCON"
+                            id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            BALCON
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="product_tags[]" value="WORKSPACE"
+                            id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            WORKSPACE
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="product_tags[]" value="LIVING_ROOM"
+                            id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            LIVING ROOM
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="product_tags[]" value="BEDROOM"
+                            id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            BEDROOM
+                        </label>
+                    </div>
+                </div>
+                =======
+                <div class="col-3">
+                    <div class="form-check">
+                        <input class="form-check-input" name="new_product_tags[]" type="checkbox" value="INDOOR_PLANTS"
+                            id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            INDOOR PLANTS
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" name="new_product_tags[]" type="checkbox"
+                            value="FLOWERING_PLANTS" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            FLOWERING PLANTS
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" name="new_product_tags[]" type="checkbox"
+                            value="AIRPURIFYING_PLANTS" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            AIRPURIFYING PLANTS
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="new_product_tags[]"
+                            value="LOW_LIGHTPLANTS" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            LOW LIGHTPLANTS
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="new_product_tags[]" value="BUNDLES"
+                            id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            BUNDLES
+                        </label>
+                    </div>
+                </div>
+                <!-- right container  -->
+                <div class="col-4">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="new_product_tags[]" value="HANGING_PLANTS"
+                            id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            HANGING PLANTS
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="new_product_tags[]"
+                            value="CACTI_AND_SUCCULENTS" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            CACTI AND SUCCULENTS
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="new_product_tags[]"
+                            value="MEDICINAL&AROMATIC_PLANTS" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            MEDICINAL&AROMATIC PLANTS
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="new_product_tags[]"
+                            value="BEGINNERFRIENDLY_PLANTS" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            BEGINNERFRIENDLY PLANTS
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="new_product_tags[]" value="NEW_ARRIVALS"
+                            id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            NEW ARRIVALS
+                        </label>
+                    </div>
+
+                </div>
+                <div class="col-5">
+                    <h5> SHOP BY LOCATION</h5>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="new_product_tags[]" value="BALCON"
+                            id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            BALCON
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="new_product_tags[]" value="WORKSPACE"
+                            id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            WORKSPACE
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="new_product_tags[]" value="LIVING_ROOM"
+                            id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            LIVING ROOM
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="new_product_tags[]" value="BEDROOM"
+                            id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            BEDROOM
+                        </label>
+                    </div>
+                </div>
+                >>>>>>> project_modification_Dec9
+
+            </div>
+        </div>
+        <!-- category tag end  -->
+
+        <div class="form-group col-md-3">
+            <label for="inputEmail4">Product Name</label>
+            <input type="text" class="form-control" value="" name="product_name" id="productname">
+        </div>
+
+        <!-- update img  -->
+
+        <div class="form-group col-md-3">
+            <label for="inputEmail4">Image</label>
+            <input type="hidden" name="old_imageName" id="old_image">
+            <input type="file" name="image" class="form-control-file" value="" id="new_image">
+        </div>
+
+
+
+
+        <div class="form-group col-md-3">
+            <label for="inputEmail4">Old Price</label>
+            <input type="text" class="form-control" name="old_price" id="oldprice">
+        </div>
+        <div class="form-group col-md-3">
+            <label for="inputEmail4">Selling Price</label>
+            <input type="text" class="form-control" name="selling_price" id="sellingprice">
+        </div>
+        <!-- <div class="form-group col-md-3">
                           <label for="inputEmail4">Image</label>
                           <input type="file" name="image" class="form-control-file" id="image">
                       </div> -->
-                
-                    
-                      <!-- <div class="form-group col-md-1"> -->
-                      <div class="form-group col-12">
-                          <label for="exampleFormControlTextarea1">Description</label>
-                          <textarea class="form-control" name="description"id="description" rows="3"></textarea>
-                      </div>
-                 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" id="editProduct"
-        class="btn btn-primary mb-2 align-right">Edit</button>
-        <!-- <button type="button" class="btn btn-primary">Save</button> -->
-      </div>
+
+
+        <!-- <div class="form-group col-md-1"> -->
+        <div class="form-group col-12">
+            <label for="exampleFormControlTextarea1">Description</label>
+            <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+        </div>
+
     </div>
-  </div>
-</div>
-<!-- edit Modal popup end  -->
-  <!-- jQuery CDN - Slim version (=without AJAX) -->
-  <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
-  <!-- Popper.JS -->
-  <script src="./js/lib/jquery.min.js"></script>
-  <!-- <script src="./js/bootstrap-tagsinput.js"></script> -->
-  <script type="text/javascript" src="./js/lib/datatables.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
-    integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-    crossorigin="anonymous"></script>
-  <!-- Bootstrap JS -->
-  <script src="./js/lib/bootstrap.min.js"></script>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="close_btn" data-dismiss="modal">Close</button>
+        <button type="submit" id="editProduct" class="btn btn-primary mb-2 align-right">Update</button>
+        <!-- <button type="button" class="btn btn-primary">Save</button> -->
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- edit Modal popup end  -->
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <!-- Popper.JS -->
+    <script src="./js/lib/jquery.min.js"></script>
+    <!-- <script src="./js/bootstrap-tagsinput.js"></script> -->
+    <script type="text/javascript" src="./js/lib/datatables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="./js/lib/bootstrap.min.js"></script>
 
-  <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script> -->
 
 
-  <script src="./js/common/generalFunctionsAndDefenitions.js"></script>
-  <script src="./js/common/layout.js"></script>
-  <script src="./js/common/api.js"></script>
-  <!-- <script src="./js/scripts/event.js"></script> -->
-  <script type="text/javascript">
-    // $('#sidebar').addClass('active');
-    $(document).ready(function () {
-      $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
-        
-      });
-      // populateEvents();
-      // getProduct();
-      getProduct();
-    });
-  </script>
-   <script>
+    <script src="./js/common/generalFunctionsAndDefenitions.js"></script>
+    <script src="./js/common/layout.js"></script>
+    <script src="./js/common/api.js"></script>
+    <!-- <script src="./js/scripts/event.js"></script> -->
+    <script type="text/javascript">
+        // $('#sidebar').addClass('active');
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
 
-    $(document).ready(function () {
-        $('input[type="radio"]').click(function () {
-            var inputValue = $(this).attr("value");
-            console.log(inputValue);
-            if (inputValue == "plants") {
-                $("#planttags").show();
-                $("#seedstag").hide();
-                $("#planterstag").hide();
-                $("#plantcarestags").hide();
-            }
-            if (inputValue == "seeds") {
-                $("#seedstag").show();
-                $("#planttags").hide();
-                $("#planterstag").hide();
-                $("#plantcarestags").hide();
-            }
-            if (inputValue == "planters") {
-                $("#planterstag").show();
-                $("#planttags").hide();
-                $("#plantcarestags").hide();
-                $("#seedstag").hide();
-            }
-            if (inputValue == "plantcares") {
-                $("#plantcarestags").show();
-                $("#planttags").hide();
-                $("#seedstag").hide();
-                $("#planterstag").hide();
-            }
-            
-
+            });
+            // populateEvents();
+            // getProduct();
+            checkAdminAuthentication();
+            getProduct();
         });
-    });
-</script>
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            $('input[type="radio"]').click(function () {
+                var inputValue = $(this).attr("value");
+                console.log(inputValue);
+                if (inputValue == "plants") {
+                    $("#planttags").show();
+                    $("#seedstag").hide();
+                    $("#planterstag").hide();
+                    $("#plantcarestags").hide();
+                }
+                if (inputValue == "seeds") {
+                    $("#seedstag").show();
+                    $("#planttags").hide();
+                    $("#planterstag").hide();
+                    $("#plantcarestags").hide();
+                }
+                if (inputValue == "planters") {
+                    $("#planterstag").show();
+                    $("#planttags").hide();
+                    $("#plantcarestags").hide();
+                    $("#seedstag").hide();
+                }
+                if (inputValue == "plantcares") {
+                    $("#plantcarestags").show();
+                    $("#planttags").hide();
+                    $("#seedstag").hide();
+                    $("#planterstag").hide();
+                }
+
+
+            });
+        });
+    </script>
 </body>
 
 </html>

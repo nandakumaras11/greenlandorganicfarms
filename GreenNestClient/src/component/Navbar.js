@@ -85,7 +85,7 @@ const Navbar = () => {
           ],
         },
         {
-          id: 16,
+          id: 17,
           name: "Plant care",
           children: [
             {
@@ -100,30 +100,24 @@ const Navbar = () => {
           ],
         },
         {
-          id: 17,
+          id: 18,
           name: "Account",
           children: [
             {
-              content: user_id==null ?[
-                { name: "Sign In", rout: "/signIn" }
-              ]
-              :[
-                { name: "Sign Out", rout: "/signOut" },
-                { name: "Orders", rout: "/orders" }
-              ]
-              
-              // content: [
-              //   user_id !=null&& { name: "Orders", rout: "/orders" },
-              //   // { name: "Change Password", rout: "/password" },
-              //   user_id == null
-              //     ? { name: "Sign In", rout: "/signIn" }
-              //     : { name: "Sign Out", rout: "/signOut" },
-              // ],
+              content: [
+
+                // { name: "Change Password", rout: "/password" },
+                user_id == null
+                  ? { name: "Sign In", rout: "/signIn" }
+                  : { name: "Sign Out", rout: "/signOut" },
+                user_id != null && { name: "Orders", rout: "/orders" },
+                user_id != null && { name: "Manage Address", rout: "/manageaddress" },
+              ],
             },
           ],
         },
         {
-          id: 18,
+          id: 19,
           name: "FAQ",
           children: [
             {
