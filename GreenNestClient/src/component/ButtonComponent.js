@@ -7,6 +7,7 @@ const ButtonComponent = ({
   checkOut,
   onClick,
   orderConfirmation,
+  disabled
 }) => {
   const { addItem } = useCart();
   return (
@@ -23,7 +24,7 @@ const ButtonComponent = ({
           }
         }}
         className={classs}
-      >
+        disabled>
         {text}
       </button>
     </>

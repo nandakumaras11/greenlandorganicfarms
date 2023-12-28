@@ -4,10 +4,11 @@ import { httpRequest } from "../API/api";
 import { useSelector } from "react-redux";
 import "./Order.css";
 
-export const AddressCard = ({addressObj, setAddress,selectedAddressId, radioState }) => {
-  if (radioState == undefined)
-    radioState = false;
-  const { address, address_id } = addressObj
+export const AddressCard = ({address:addressObj, setAddress,changeAddressSelection,isAddressSelectionRequired=false,selectedAddressId  }) => {
+  const { address, address_id } = addressObj;
+  const [PriviousAddressValue, setEditAddress] = useState("");
+  const [addressId, AddressIdForUpdation] = useState(-1);
+  const [isEditFormVisible,setIsEditFormVisible]=useState(-1)
   const deleteAddress = (event, address_id) => {
     httpRequest({ address_id }, "deleteAddress.php").then(() => {
       getAddress().then((data) => {
@@ -15,32 +16,36 @@ export const AddressCard = ({addressObj, setAddress,selectedAddressId, radioStat
       });
     });
   }
-  const [addressId, AddressIdForUpdation] = useState(-1);
-  const [PriviousAddressValue, setEditAddress] = useState("");
-
+// console.log(isEditFormVisible)
   const editAddress = (event, address_id) => {
-    httpRequest({ address_id }, "getOneAddress.php").then((data) => {
-      var str = data[0].address
-      str = str.split("_")
-      setEditAddress(str)
-      AddressIdForUpdation(address_id)
-    });
+    // httpRequest({ address_id }, "getOneAddress.php").then((data) => {
+    //   var str = data[0].address
+    //   str = str.split("_")
+    //   setEditAddress(str)
+    //   AddressIdForUpdation(address_id)
+    // });
+    changeAddressSelection(address_id);
+    // console.log(selectedAddressId)
+    // console.log(isEditFormVisible)
+    setEditAddress( address.split("_"));
+    setIsEditFormVisible(address_id);
+  
+    // AddressIdForUpdation(address_id)
   }
-  const handleRadioChange = (e) => {
-    selectedAddressId(e.target.value);
-  }
+
   return (
     <>
       <div>
         <div className="orderContainer">
           <div className="orderDetails">
             <div className="order_id font12">
-              {radioState ?
+              {isAddressSelectionRequired &&
                 <div>
                   <label htmlFor="addressRadio"></label>
-                  <input type="radio" name="addressRadio" value={address_id} onChange={handleRadioChange} id="addressRadio" />
-                </div> : " "
+                  <input type="radio" name="addressRadio" value={address_id} onChange={(event)=> {changeAddressSelection(event.target.value);setIsEditFormVisible(null)}} id="addressRadio" />
+                </div> 
               }
+              {address_id}
             </div>
             <div className="transaction_id font12">
               <b><textarea name="" value={address.replace(/_/g, " , ")} id="editAddressBox" cols="50" rows="5" readOnly>
@@ -59,8 +64,9 @@ export const AddressCard = ({addressObj, setAddress,selectedAddressId, radioStat
 
             </div>
           </div>
+       
+        {selectedAddressId==isEditFormVisible && <EditAddressDetails PriviousAddressValue={PriviousAddressValue} addressId={addressId} setAddress={setAddress} setIsEditFormVisible={setIsEditFormVisible} />}
         </div>
-        <EditAddressDetails PriviousAddressValue={PriviousAddressValue} addressId={addressId} setAddress={setAddress} />
       </div>
     </>
   )
@@ -167,7 +173,7 @@ export const CreateNewAddress = ({ toggleAddressForm, setAddress }) => {
     </>
   );
 }
-export const EditAddressDetails = ({ PriviousAddressValue, addressId,setAddress }) => {
+export const EditAddressDetails = ({ PriviousAddressValue, addressId,setAddress,setIsEditFormVisible }) => {
   const nameRef = useRef();
   const addressRef = useRef();
   const locationRef = useRef();
@@ -264,7 +270,7 @@ export const EditAddressDetails = ({ PriviousAddressValue, addressId,setAddress 
         </div>
         <div className="orderDetails">
           <div className="flex-child">
-            <button className="cancelBtn" type="submit">Cancel</button>
+            <button className="cancelBtn" type="submit" onClick={()=>{setIsEditFormVisible(false)}}>Cancel</button>
           </div>
           <div className="flex-child">
             <button className="saveBtn" type="submit" onClick={updateAddressHandler}>Update</button>
@@ -275,7 +281,7 @@ export const EditAddressDetails = ({ PriviousAddressValue, addressId,setAddress 
   );
 }
 
-const ManageAddress = ({ selectedAddressId, radioState }) => {
+const ManageAddress = ({changeAddressSelection, isAddressSelectionRequired ,selectedAddressId}) => {
   const [addresses, setAddress] = useState([]);
   const [showAddressForm, toggleAddressForm] = useState(false);
   useEffect(() => {
@@ -292,20 +298,20 @@ const ManageAddress = ({ selectedAddressId, radioState }) => {
               {showAddressForm ? ("") : (<span className="pointer"> <i className="fa fa-plus" aria-hidden="true" ></i>ADD A NEW ADDRESS</span>)}
             </b>
           </div>
-          {showAddressForm ? <CreateNewAddress toggleAddressForm={toggleAddressForm} setAddress={setAddress} /> : ""}
+          {showAddressForm && <CreateNewAddress toggleAddressForm={toggleAddressForm} setAddress={setAddress} /> }
         </div>
       </div>
-      {addresses.map((oneAddress, index) => {
+      {addresses.map((address, index) => {
         return (
-          <>
+
             <AddressCard
               key={index}
-              addressObj={oneAddress}
+              address={address}
               setAddress={setAddress}
+              changeAddressSelection={changeAddressSelection}
+              isAddressSelectionRequired={isAddressSelectionRequired}
               selectedAddressId={selectedAddressId}
-              radioState={radioState}
             />
-          </>
         );
       }
       )}

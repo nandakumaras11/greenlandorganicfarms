@@ -26,7 +26,7 @@ import { PayOnline } from "./pages/OnlinePayment/PayOnline";
 import { OrderPlaced } from "./pages/OrderPlaced/OrderPlaced";
 import AboutUS from "./pages/AboutUS";
 import PrivacyPolicy from "./pages/Privacy";
-import Manageaddress from "./pages/Manageaddress";
+import Manageaddress from "./pages/ManageAddress";
 
 import Terms from "./pages/Terms";
 import RefundPolicy from "./component/RefundPolicy";

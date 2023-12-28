@@ -75,6 +75,7 @@ function showPopUpRedirect(headding,txt,typ){
       function(){ 
         // location.reload(); //adminHome.html
         window.location.replace("https://greenlandorganicfarms.com/greennextAdmin/adminHome.html");
+        // window.location.replace("http://localhost/greenlandorganicfarms/admin/addProduct.html");
     });
 }
 function showPopUpReload(headding,txt,typ){
@@ -88,9 +89,9 @@ function showPopUpReload(headding,txt,typ){
         location.reload();
     });
 }
-// var apiBaseUrl = "https://greenlandorganicfarms.com/api/";
-// var indexPage = "https://greenlandorganicfarms.com/greennextAdmin/index.html";
-
-var apiBaseUrl = "http://localhost/greenlandorganicfarms/api/";
-var indexPage = "http://localhost/greenlandorganicfarms/admin/index.html";
+var admin_id=null;
+var apiBaseUrl = "https://greenlandorganicfarms.com/api/";
+var indexPage = "https://greenlandorganicfarms.com/greennextAdmin/index.html";
+// var apiBaseUrl = "http://localhost/greenlandorganicfarms/api/";
+// var indexPage = "http://localhost/greenlandorganicfarms/admin/index.html";
 

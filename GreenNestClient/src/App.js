@@ -8,8 +8,8 @@ import { useDispatch } from "react-redux";
 import { fetchandstore } from "./Store1/Slices/productSlice";
 import { httpRequest } from "./API/api";
 import Shopingcart from "./pages/Shopingcart";
-window.$apiBaseUrl = "https://greenlandorganicfarms.com/api/User/";
-// window.$apiBaseUrl = "https://greenlandorganicfarms/api/User/";
+// window.$apiBaseUrl = "https://greenlandorganicfarms.com/api/User/";
+window.$apiBaseUrl = "http://localhost/greenlandorganicfarms/api/User/";
 
 function App() {
   const dispatch = useDispatch();

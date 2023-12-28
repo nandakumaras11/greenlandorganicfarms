@@ -31,16 +31,16 @@ class Address
         }
 
     }
-    public function addAddress() # by click order the product
-    {
-        $query = "UPDATE user_details SET address='" . $this->address_id . "' WHERE user_id='" . $this->user_id . "'";
-        // print_r($query);
-        $stmt = $this->conn->prepare($query);
-        if ($stmt->execute()) {
-            return 1;
-        }
-        return false;
-    }
+    // public function addAddress() # by click order the product
+    // {
+    //     $query = "UPDATE user_details SET address='" . $this->address_id . "' WHERE user_id='" . $this->user_id . "'";
+    //     // print_r($query);
+    //     $stmt = $this->conn->prepare($query);
+    //     if ($stmt->execute()) {
+    //         return 1;
+    //     }
+    //     return false;
+    // }
     public function addressDetailList()
     {
         $query = "SELECT " . "address_id,address" . " FROM " . $this->table_name . " WHERE user_id='" . $this->user_id . "'";
@@ -91,6 +91,24 @@ class Address
             return 1;
         }
         return false;
+    }
+    public function getOneAddress()
+    {
+        $query = "SELECT "."address"." FROM " . $this->table_name . " WHERE address_id= " . $this->address_id;
+        //     // prepare query statement
+            $stmt = $this->conn->prepare($query);
+        //     // execute query
+            $stmt->execute(); 
+            if($stmt->rowCount() > 0){
+                $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                while ($row = $stmt->fetch()) {
+                    $res[] = $row;
+                }
+                return $res;
+            }
+            else{
+                return [];
+            }
     }
     // public function getAddress()
     // {

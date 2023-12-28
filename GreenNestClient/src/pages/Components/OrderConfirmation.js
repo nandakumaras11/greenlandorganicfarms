@@ -4,11 +4,11 @@ import { useNavigate } from "react-router";
 import { useCart } from "react-use-cart";
 import { httpRequest } from "../../API/api";
 import ButtonComponent from "../../component/ButtonComponent";
-import Manageaddress from "../Manageaddress";
+import ManageAddress from "../ManageAddress";
 import "./OrderConfirmation.css";
 export const OrderConfirmation = () => {
   const loginCredentials = JSON.parse(localStorage.getItem("loginCredentials"));
-  const [address_id, selectedAddressId] = useState();
+  const [address_id, changeAddressSelection] = useState(false);
   const [paymentMode, setPaymentMode] = useState("cod");
   const { isEmpty, items, cartTotal } = useCart();
   const user_id = useSelector((state) => state.user.user_id);
@@ -31,10 +31,12 @@ export const OrderConfirmation = () => {
     }
   };
   return (
+    
     <div className="spacing categoryFilterContainer">
+      {/* {console.log(address_id)} */}
       <div className="product-headding">Confirm your location</div>
       <div className="address spacing">
-        <Manageaddress selectedAddressId={selectedAddressId} radioState={true} />
+        <ManageAddress changeAddressSelection={changeAddressSelection} selectedAddressId={address_id} isAddressSelectionRequired={true} />
 
         {/* <Editaddress /> */}
       </div>
@@ -68,11 +70,14 @@ export const OrderConfirmation = () => {
           />
         </div>
       </div>
+      {/* {address_id} */}
       <ButtonComponent
         text="Confirm"
-        classs="addbtn checkOutBtn"
+        classs="addbtn checkOutBtn disabled"
+        classs={address_id==false ?"addbtn checkOutBtn disabled":"addbtn checkOutBtn"}
         orderConfirmation={true}
         onClick={completeOrder}
+        disabled={address_id==false &&true}
       />
     </div>
   );
