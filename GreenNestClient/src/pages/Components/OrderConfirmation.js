@@ -27,7 +27,17 @@ export const OrderConfirmation = () => {
         paymentMode: paymentMode,
         orderID: null
       };
-      httpRequest(data, "checkOut.php").then(data => console.log(data));
+      // httpRequest(data, "checkOut.php").then(data => console.log(data));
+      httpRequest(data, "checkOut.php").then((respose) => {
+        if (respose && respose.status && paymentMode == "cod") {
+          //cod success
+          navigate("/OrderPlaced");
+        } else if (respose && respose.status && paymentMode == "Online") {
+          //cod success
+          data.orderID=respose.message;
+          navigate("/PayOnline", { state: data });
+        }
+      });
     }
   };
   return (
@@ -73,11 +83,10 @@ export const OrderConfirmation = () => {
       {/* {address_id} */}
       <ButtonComponent
         text="Confirm"
-        classs="addbtn checkOutBtn disabled"
         classs={address_id==false ?"addbtn checkOutBtn disabled":"addbtn checkOutBtn"}
         orderConfirmation={true}
         onClick={completeOrder}
-        disabled={address_id==false &&true}
+        disableValue={address_id==false ?true:false}
       />
     </div>
   );
