@@ -32,11 +32,14 @@ function API_JSON(url, data, successCallBack) {
 $("#saveProduct").click(function (e) {
     e.preventDefault();
     API('User/createProduct.php', new FormData($("#my_form")[0]), (result) => {
-        console.log(result);
+        // console.log(result);
         if (result.status == "success")
-            showPopUpReload("Success", result.message, "success");
+        // message
+        location.reload();
+        // humanReadMsg(result.message);
+            // showPopUpReload("Success", result.message, "success");
         else
-            showPopUpReload("Error", result.message, "error");
+        humanReadMsg(result.message);
         // getProduct();
 
     })
@@ -106,7 +109,9 @@ $("#editProduct").click(function (e) {
     e.preventDefault();
     API('User/updateProduct.php', new FormData($("#my_form")[0]), (result) => {
         // console.log(result)
+        if (result.status=="success")
         location.reload();
+        else
         humanReadMsg(result.message);
 
         // getProduct();
@@ -237,16 +242,16 @@ $("#adminLogin").click(function (e) {
     e.preventDefault();
     API('User/adminAutentication.php', new FormData($("#my_form1")[0]), (result) => {
         if (result.status == 'success')
-            showPopUpRedirect("Success", "Successfuly Login", "success");  //
+        window.location.replace(" https://greenlandorganicfarms.com/greennextAdmin/adminHome.html");
+       
+            // showPopUpRedirect("Success", "Successfuly Login", "success");  
         else
-            showPopUpReload("Failed", "Give correct phone number and password", "error");
+            // showPopUpReload("Failed", "Give correct phone number and password", "error");
         // location.reload();
-        humanReadMsg(result.message);
+        humanReadMsg(result.status);
 
     })
 });
-
-// logoutBtn
 $("#logoutBtn").click(function (e) {
     e.preventDefault();
     API('User/logout.php', {}, (result) => {

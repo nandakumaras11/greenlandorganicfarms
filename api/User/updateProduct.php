@@ -77,18 +77,11 @@ $product->selling_price=$_POST['selling_price'];
 	
 			// $gallery->caption  			=  $_POST['caption'];
 	
-		
-	
 			if($product->updateProduct() == 1){
 	
 				$res_arr = array("status" 	=> "success","message" 	=> "Successfully Inserted !!");
-	
-			
-	
 			}else{
-	
-				$res_arr = array("status" 	=> "failed","message" 	=> $product->updateProduct());
-	
+				$res_arr = array("status" 	=> "failed","message" 	=> "Product Was Not Updated ");
 			}
 	
 	

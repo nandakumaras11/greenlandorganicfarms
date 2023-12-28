@@ -23,7 +23,7 @@ $admin->signInPassword=md5($_POST['signInPassword']);
 		}else if($admin->authentication() == 2){
 			$res_arr = array("status" 	=> "failed","message" 	=> $admin->authentication());
 		}else{
-			$res_arr = array("status" 	=> "authentication was failed","message" 	=> $admin->authentication());
+			$res_arr = array("status" 	=> "Password Or Phone Number Was Wrong","message" 	=> $admin->authentication());
 		}
 echo json_encode($res_arr);
 ?>
