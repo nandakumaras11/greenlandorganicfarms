@@ -63,7 +63,7 @@ let getProduct = () => {
             $(".deleteProduct").unbind().click(function (e) {
                 e.preventDefault();
                 var product_id = this.getAttribute("id");
-                API_JSON("User/deleteProduct.php", { 'product_id': product_id }, location.reload());
+                API_JSON("User/deleteProduct.php", { 'product_id': product_id }, (response)=>{location.reload()});
             });
             $(".editProduct").click(function (e) {
                 e.preventDefault();
@@ -94,7 +94,7 @@ let getProduct = () => {
 
                     $('#product_id').val(result[0].product_id);
 
-                    console.log(result[0].product_name);
+                    // console.log(result[0].product_name);
                 });
             });
             $('#galleryTable').DataTable({ pageLength: 5, lengthMenu: [[5, 10, 20], [5, 10, 20]] });
@@ -113,29 +113,16 @@ $("#editProduct").click(function (e) {
         location.reload();
         else
         humanReadMsg(result.message);
-
-        // getProduct();
-
     })
-    location.reload(true);   // refresh window
-
-    // close_btn
 });
-// edit product end
-//gallery or banner
 $("#saveGallery").click(function (e) {
     e.preventDefault();
     API('User/createGallery.php', new FormData($("#my_form")[0]), (result) => {
-        // console.log(result);
-
         if (result.status == "success")
-            showPopUp("Success", "Successfuly Inserted!", "success");
+        humanReadMsg(result.message);
         else
-            showPopUp("Error", "Something went wrong.Please try again!", "error");
-        // location.reload();
-        // humanReadMsg(result.message);
+        humanReadMsg("Something went wrong.Please try again!");
         getGallery();
-
     })
 });
 
@@ -152,30 +139,9 @@ let getGallery = () => {
             var gallery_id = this.getAttribute("id");
             API_JSON("User/deleteGallery.php", { 'galleryId': gallery_id }, (result) => {
                 if (result.status == "success")
-                    showPopUp("Success", "Successfuly Deleted", "success");
+                    humanReadMsg("Successfuly Deleted");
                 else
-                    showPopUp("Error", "Something went wrong.Please try again!", "error");
-
-                // if(result.status=="success")
-                // {
-                //     showPopUp("Success","Successfuly Deleted","Ok");
-                // swal({
-                //     title: "Success",
-                //     text: "Successfuly Deleted!",
-                //     type: "success",
-                //     confirmButtonText: "OK"
-                //   });
-
-                // }
-                // else
-                //     showPopUp("Error","Something went wrong.Please try again!","Ok");
-                // swal({
-                //     title: "Error",
-                //     text: "Something went wrong.Please try again!",
-                //     type: "error",
-                //     confirmButtonText: "OK"
-                //   });
-
+                humanReadMsg("Something went wrong.Please try again!");
                 getGallery();
             })
         });
@@ -231,8 +197,6 @@ let getOrderDetails = (products) => {
 $("#saveStatusChange").click(function (e) {
     e.preventDefault();
     API('User/UpdateOrderMessage.php', new FormData($("#my_form")[0]), (result) => {
-        // console.log(result)
-        // location.reload();
         humanReadMsg(result.message);
         getOrderDetails();
         location.reload();
@@ -243,11 +207,7 @@ $("#adminLogin").click(function (e) {
     API('User/adminAutentication.php', new FormData($("#my_form1")[0]), (result) => {
         if (result.status == 'success')
         window.location.replace(" https://greenlandorganicfarms.com/greennextAdmin/adminHome.html");
-       
-            // showPopUpRedirect("Success", "Successfuly Login", "success");  
         else
-            // showPopUpReload("Failed", "Give correct phone number and password", "error");
-        // location.reload();
         humanReadMsg(result.status);
 
     })
@@ -256,11 +216,9 @@ $("#logoutBtn").click(function (e) {
     e.preventDefault();
     API('User/logout.php', {}, (result) => {
         if (result.status == 'success')
-            showPopUpRedirect("Success", "Successfuly Login", "success");  //
+        humanReadMsg("Successfuly Logout")
         else
-            showPopUpReload("Failed", "Give correct phone number and password", "error");
-        // location.reload();
-        humanReadMsg(result.message);
+        humanReadMsg("Soeting Went Wrong! Try Again")
 
     })
 });
@@ -271,15 +229,10 @@ function checkAdminAuthentication() {
         console.log(result);
         if (result.status == "failed") {
             window.location.replace(indexPage);
-            // showPopUpReload("Success",result.message,"success");
-            // console.log("session pakka");
-            // e.preventDefault();
         }
         else {
             admin_id = result.message;
             console.log(admin_id);
         }
-        // getProduct();
-
     })
 }
