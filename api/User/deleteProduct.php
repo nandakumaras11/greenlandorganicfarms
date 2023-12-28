@@ -12,7 +12,7 @@ $res_arr		= array();
 if(isset($_POST['product_id']) && !empty($_POST['product_id']) ){
     $product->product_id		= $_POST['product_id']; 
         if($product->deleteProduct() == 1){
-        $res_arr = array("status" 	=> "success","message" 	=> "Gallery Removed");
+        $res_arr = array("status" 	=> "success","message" 	=> "Product was  Removed");
     }else{
         $res_arr = array("status" 	=> "failed","message" 	=> $product->deleteProduct());
     }

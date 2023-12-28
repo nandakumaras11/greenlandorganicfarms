@@ -51,7 +51,7 @@ $product->selling_price=$_POST['selling_price'];
 	$product->description=$_POST['description'];
 	// print_r(json_decode($_POST['old_producttag']));
 	// print_r(json_encode($_POST['new_product_tags']));
-	if(sizeof($_POST['new_product_tags'])!=0)
+	if(isset($_POST['new_product_tags']))
 	 {
 		$product->product_tags=json_encode($_POST['new_product_tags']);	
 		// print_r($product->product_tags);
