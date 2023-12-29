@@ -6,7 +6,7 @@ export default function Footer() {
     //     <div className="footer-content">aravindas@copyright</div>
     // </div>
     <footer className="footer">
-      copyright reserved @2023
+      copyright@reserved @2024
     </footer>
   )
 }
