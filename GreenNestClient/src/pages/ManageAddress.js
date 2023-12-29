@@ -4,11 +4,8 @@ import { httpRequest } from "../API/api";
 import { useSelector } from "react-redux";
 import "./Order.css";
 
-export const AddressCard = ({ address: addressObj, setAddress, changeAddressSelection, isAddressSelectionRequired = false, selectedAddressId, toggleAddressForm }) => {
+export const AddressCard = ({ address: addressObj, setAddress, changeAddressSelection, isAddressSelectionRequired = false, selectedAddressId, toggleAddressForm, setEditAddress, setIsEditFormVisible, AddressIdForUpdation }) => {
   const { address, address_id } = addressObj;
-  const [PriviousAddressValue, setEditAddress] = useState("");
-  const [addressId, AddressIdForUpdation] = useState(-1);
-  const [isEditFormVisible, setIsEditFormVisible] = useState(-1)
   const deleteAddress = (event, address_id) => {
     httpRequest({ address_id }, "deleteAddress.php").then(() => {
       getAddress().then((data) => {
@@ -26,7 +23,6 @@ export const AddressCard = ({ address: addressObj, setAddress, changeAddressSele
 
   return (
     <>
-      {console.log(selectedAddressId)}
       <div className={`addressContainer pointer ${selectedAddressId == address_id && 'selectedAddress'} `} onClick={() => { changeAddressSelection(address_id) }}>
         <div className="addressDetails">
           <div className="font12">
@@ -47,7 +43,7 @@ export const AddressCard = ({ address: addressObj, setAddress, changeAddressSele
         </div>
 
       </div>
-      {selectedAddressId == isEditFormVisible && <EditAddressDetails PriviousAddressValue={PriviousAddressValue} addressId={addressId} setAddress={setAddress} setIsEditFormVisible={setIsEditFormVisible} />}
+
     </>
   )
 
@@ -55,9 +51,9 @@ export const AddressCard = ({ address: addressObj, setAddress, changeAddressSele
 
 
 function TextBox({ nameRef, name, placeholder }) {
-  return (<div class="form__group field">
-    <input type="input" class="form__field" placeholder={placeholder} ref={nameRef} name={name} id={name} required />
-    <label for={name} class="form__label">{name}</label>
+  return (<div className="form__group field">
+    <input type="input" className="form__field" placeholder={placeholder} ref={nameRef} name={name} id={name} required />
+    <label htmlFor={name} className="form__label">{name}</label>
   </div>);
 }
 
@@ -165,65 +161,38 @@ export const EditAddressDetails = ({ PriviousAddressValue, addressId, setAddress
   }
   return (
     <>
-      <div>
+      < >
         <div className="addressDetails">
           <div className="flex-child">
-            <input type="text" placeholder="Name *" className="signInControl"
-              ref={nameRef}
-              name="name"
-            />
+            <TextBox nameRef={nameRef} placeholder="Name *" name="Name" />
           </div>
           <div className="flex-child">
-            <input type="number" placeholder="Mobile Number *" className="signInControl"
-              ref={alterPhoneNoRef}
-              name="altphoneno"
-            />
+            <TextBox nameRef={alterPhoneNoRef} placeholder="Mobile Number *" name="Mobile" />
           </div>
         </div>
         <div className="addressDetails">
           <div className="flex-child">
-            <input type="number" placeholder="Pincode *" className="signInControl"
-              ref={pincodeRef}
-              name="pincode"
-            />
+            <TextBox nameRef={pincodeRef} placeholder="Pincode *" name="Pincode" />
           </div>
           <div className="flex-child">
-            <input type="text" placeholder="Locality / Area/ Street *" className="signInControl"
-              ref={locationRef}
-              name="locality" />
+            <TextBox nameRef={locationRef} placeholder="Locality / Area/ Street *" name="Locality / Area/ Street *" />
           </div>
         </div>
         <div className="addressDetails">
           <div className="flex-child">
-            <input
-              className="signInControl "
-              placeholder="Building name / Falt number *"
-              ref={addressRef}
-              name="address"
-            />
+            <TextBox nameRef={addressRef} placeholder="Building name / Flat number *" name="Building name / Flat number *" />
           </div>
           <div className="flex-child">
-            <input type="text" placeholder="City/District *"
-              ref={cityRef}
-              name="city"
-              className="signInControl" />
+            <TextBox nameRef={cityRef} placeholder="City/District *" name="City/District *" />
           </div>
         </div>
         {/* new  */}
         <div className="addressDetails">
           <div className="flex-child">
-            <input
-              className="signInControl "
-              placeholder="Landmark *"
-              ref={landmarkRef}
-              name="address"
-            />
+            <TextBox nameRef={landmarkRef} placeholder="Landmark *" name="Landmark *" />
           </div>
           <div className="flex-child">
-            <input type="text" placeholder="State *"
-              ref={stateRef}
-              name="city"
-              className="signInControl" />
+            <TextBox nameRef={stateRef} placeholder="State *" name="State *" />
           </div>
         </div>
         <div className="addressDetails">
@@ -234,7 +203,7 @@ export const EditAddressDetails = ({ PriviousAddressValue, addressId, setAddress
             <button className="saveBtn" type="submit" onClick={updateAddressHandler}>Update</button>
           </div>
         </div>
-      </div>
+      </>
     </>
   );
 }
@@ -242,6 +211,9 @@ export const EditAddressDetails = ({ PriviousAddressValue, addressId, setAddress
 const ManageAddress = ({ changeAddressSelection, isAddressSelectionRequired, selectedAddressId }) => {
   const [addresses, setAddress] = useState([]);
   const [showAddressForm, toggleAddressForm] = useState(false);
+  const [PriviousAddressValue, setEditAddress] = useState("");
+  const [addressId, AddressIdForUpdation] = useState(-1);
+  const [isEditFormVisible, setIsEditFormVisible] = useState(false)
   useEffect(() => {
     getAddress().then((data) => {
       setAddress(data);
@@ -249,15 +221,16 @@ const ManageAddress = ({ changeAddressSelection, isAddressSelectionRequired, sel
   }, []);
   return (
     <div className="addresses spacing">
-      <div className="addressContainer">
+      {console.log(isEditFormVisible)}
+      {!showAddressForm && <div className="addressContainer">
         <div className={showAddressForm ? "cancel" : "addressDetails"}>
-          <div className="font12 pointer addressDetails" onClick={() => toggleAddressForm(!showAddressForm)}>
-            {showAddressForm ? ("") : (<> <i className="fa fa-plus" aria-hidden="true" /> <span>ADD NEW ADDRESS</span></>)}
+          <div className="font12 pointer addressDetails" onClick={() => { toggleAddressForm(!showAddressForm); setIsEditFormVisible(false) }}>
+            {showAddressForm ? <> <i className="fa fa-plus" aria-hidden="true" /> Please enter your address</> : (<> <i className="fa fa-plus" aria-hidden="true" /> <span>ADD NEW ADDRESS</span></>)}
           </div>
-          {showAddressForm && <CreateNewAddress toggleAddressForm={toggleAddressForm} setAddress={setAddress} />}
         </div>
       </div>
-      {addresses.map((address, index) => {
+      }
+      {addresses && addresses.map((address, index) => {
         return (
 
           <AddressCard
@@ -268,11 +241,19 @@ const ManageAddress = ({ changeAddressSelection, isAddressSelectionRequired, sel
             isAddressSelectionRequired={isAddressSelectionRequired}
             selectedAddressId={selectedAddressId}
             toggleAddressForm={toggleAddressForm}
+            setEditAddress={setEditAddress}
+            setIsEditFormVisible={setIsEditFormVisible}
+            AddressIdForUpdation={AddressIdForUpdation}
           />
         );
       }
       )}
-
+      {showAddressForm && <CreateNewAddress toggleAddressForm={toggleAddressForm} setAddress={setAddress} />}
+      {selectedAddressId && isEditFormVisible && <EditAddressDetails
+        setEditAddress={setEditAddress}
+        setIsEditFormVisible={setIsEditFormVisible}
+        AddressIdForUpdation={AddressIdForUpdation}
+        PriviousAddressValue={PriviousAddressValue} addressId={addressId} setAddress={setAddress} />}
       {/* 
       {selectedAddressId == isEditFormVisible && <EditAddressDetails PriviousAddressValue={PriviousAddressValue} addressId={addressId} setAddress={setAddress} setIsEditFormVisible={setIsEditFormVisible} />} */}
     </div>

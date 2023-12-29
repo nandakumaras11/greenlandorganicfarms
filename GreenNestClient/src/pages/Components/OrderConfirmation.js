@@ -43,40 +43,15 @@ export const OrderConfirmation = () => {
   return (
 
     <div className="spacing categoryFilterContainer">
-      {/* {console.log(address_id)} */}
+      {console.log(paymentMode)}
       <div className="product-headding">Confirm your location</div>
       <ManageAddress changeAddressSelection={changeAddressSelection} selectedAddressId={address_id} isAddressSelectionRequired={true} />
       <div className="product-headding spacing">Payment mode</div>
       <div className="payementModeDiv spacing">
-        <div>
-          {" "}
-          <label htmlFor="CashOnDelivary"> Cash on delivery</label>{" "}
-          <input
-            name="paymentMode"
-            id="CashOnDelivary"
-            type="radio"
-            value="cod"
-            checked={paymentMode == "cod"}
-            onChange={(event) => {
-              setPaymentMode(event.target.value);
-            }}
-          />
-        </div>
-        <div className="spacing">
-          <label htmlFor="Online"> Online Payment</label>{" "}
-          <input
-            name="paymentMode"
-            type="radio"
-            id="Online"
-            checked={paymentMode == "Online"}
-            value="Online"
-            onChange={(event) => {
-              setPaymentMode(event.target.value);
-            }}
-          />
-        </div>
+        <div className={`CashOnDelivery ${paymentMode == "cod" && 'selected'}`} onClick={(event) => { setPaymentMode("cod"); }}> Cash on delivery</div>
+        <div className={`CashOnDelivery ${paymentMode == "Online" && 'selected'}`} onClick={(event) => { setPaymentMode("Online"); }}> Online Payment</div>
       </div>
-      {/* {address_id} */}
+
       <ButtonComponent
         text="Confirm"
         classs={address_id == false ? "addbtn checkOutBtn disabled" : "addbtn checkOutBtn"}
