@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { useCart } from "react-use-cart";
@@ -34,22 +34,18 @@ export const OrderConfirmation = () => {
           navigate("/OrderPlaced");
         } else if (respose && respose.status && paymentMode == "Online") {
           //cod success
-          data.orderID=respose.message;
+          data.orderID = respose.message;
           navigate("/PayOnline", { state: data });
         }
       });
     }
   };
   return (
-    
+
     <div className="spacing categoryFilterContainer">
       {/* {console.log(address_id)} */}
       <div className="product-headding">Confirm your location</div>
-      <div className="address spacing">
-        <ManageAddress changeAddressSelection={changeAddressSelection} selectedAddressId={address_id} isAddressSelectionRequired={true} />
-
-        {/* <Editaddress /> */}
-      </div>
+      <ManageAddress changeAddressSelection={changeAddressSelection} selectedAddressId={address_id} isAddressSelectionRequired={true} />
       <div className="product-headding spacing">Payment mode</div>
       <div className="payementModeDiv spacing">
         <div>
@@ -83,10 +79,10 @@ export const OrderConfirmation = () => {
       {/* {address_id} */}
       <ButtonComponent
         text="Confirm"
-        classs={address_id==false ?"addbtn checkOutBtn disabled":"addbtn checkOutBtn"}
+        classs={address_id == false ? "addbtn checkOutBtn disabled" : "addbtn checkOutBtn"}
         orderConfirmation={true}
         onClick={completeOrder}
-        disableValue={address_id==false ?true:false}
+        disableValue={address_id == false ? true : false}
       />
     </div>
   );

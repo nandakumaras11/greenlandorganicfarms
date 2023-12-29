@@ -143,8 +143,8 @@
 
 .footer {
   position: absolute;
-  bottom: 0px;
-  margin-top: 5%;
+  bottom: -10%;
+  /* margin-top: 5%; */
   /* right: 0;
   left: 0; */
   width: 100%;
@@ -458,7 +458,7 @@
 .headding-container {
   display: flex;
   align-items: center;
-  margin-left: 19px;
+  /* margin-left: 19px; */
 }
 
 .label-img {
@@ -575,7 +575,7 @@
 .footer {
   background-color: #166534;
   text-align: center;
-  margin-top: 5%;
+  /* margin-top: 5%; */
   padding: 1% 0%;
   font-size: 0.8rem;
   margin-bottom: 0px;

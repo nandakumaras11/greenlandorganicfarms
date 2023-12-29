@@ -4,7 +4,7 @@ import { httpRequest } from "../API/api";
 import { useSelector } from "react-redux";
 import "./Order.css";
 
-export const AddressCard = ({ address: addressObj, setAddress, changeAddressSelection, isAddressSelectionRequired = false, selectedAddressId }) => {
+export const AddressCard = ({ address: addressObj, setAddress, changeAddressSelection, isAddressSelectionRequired = false, selectedAddressId, toggleAddressForm }) => {
   const { address, address_id } = addressObj;
   const [PriviousAddressValue, setEditAddress] = useState("");
   const [addressId, AddressIdForUpdation] = useState(-1);
@@ -20,49 +20,47 @@ export const AddressCard = ({ address: addressObj, setAddress, changeAddressSele
     changeAddressSelection(address_id);
     setEditAddress(address.split("_"));
     setIsEditFormVisible(address_id);
-    AddressIdForUpdation(address_id)
+    AddressIdForUpdation(address_id);
+    toggleAddressForm(false);
   }
-var addressArray=address.split('_')
+
   return (
     <>
-      <div>
-        <div className="orderContainer">
-          <div className="orderDetails">
-            <div className="order_id font12">
-              {isAddressSelectionRequired &&
-                <div>
-                  <label htmlFor="addressRadio"></label>
-                  <input type="radio" name="addressRadio" value={address_id} onChange={(event) => { changeAddressSelection(event.target.value); setIsEditFormVisible(null) }} id="addressRadio" />
-                </div>
-              }
-            </div>
-            <div className="transaction_id font12">
-              <b>
-                <textarea name="" value={address.replace(/_/g, " , ")} id="editAddressBox" cols="50" rows="5" readOnly>
-              </textarea>
-              </b>
-            </div>
-            <div className="status font12" >
-              <i className="fa fa-pencil-square-o"
-                onClick={(event) => {
-                  editAddress(event, address_id)
-                }} aria-hidden="true"></i>
-            </div>
-            <div className="status font12" >
-              <i className="fa fa-trash-o" onClick={(event) => {
-                deleteAddress(event, address_id)
-              }} aria-hidden="true"></i>
-
-            </div>
+      {console.log(selectedAddressId)}
+      <div className={`addressContainer pointer ${selectedAddressId == address_id && 'selectedAddress'} `} onClick={() => { changeAddressSelection(address_id) }}>
+        <div className="addressDetails">
+          <div className="font12">
+            {address.replaceAll("_", ", ")}
           </div>
 
-          {selectedAddressId == isEditFormVisible && <EditAddressDetails PriviousAddressValue={PriviousAddressValue} addressId={addressId} setAddress={setAddress} setIsEditFormVisible={setIsEditFormVisible} />}
+          <div className="status font12" >
+            <i className="fa fa-pencil-square-o"
+              onClick={(event) => {
+                editAddress(event, address_id)
+              }} aria-hidden="true"></i>
+          </div>
+          <div className="status font12" >
+            <i className="fa fa-trash-o" onClick={(event) => {
+              deleteAddress(event, address_id)
+            }} aria-hidden="true"></i>
+          </div>
         </div>
+
       </div>
+      {selectedAddressId == isEditFormVisible && <EditAddressDetails PriviousAddressValue={PriviousAddressValue} addressId={addressId} setAddress={setAddress} setIsEditFormVisible={setIsEditFormVisible} />}
     </>
   )
 
 }
+
+
+function TextBox({ nameRef, name, placeholder }) {
+  return (<div class="form__group field">
+    <input type="input" class="form__field" placeholder={placeholder} ref={nameRef} name={name} id={name} required />
+    <label for={name} class="form__label">{name}</label>
+  </div>);
+}
+
 
 export const CreateNewAddress = ({ toggleAddressForm, setAddress }) => {
   const nameRef = useRef(null);
@@ -85,74 +83,43 @@ export const CreateNewAddress = ({ toggleAddressForm, setAddress }) => {
       setAddress(data)
     }));
   }
-  useEffect(() => {
-    getAddress().then((data) => {
-    });
-  }, []);
   return (
     <>
       <div >
-        <div className="orderDetails">
+        <div className="addressDetails">
           <div className="flex-child">
-            <input type="text" placeholder="Name *" className="signInControl"
-              ref={nameRef}
-              name="name"
-            />
+            <TextBox nameRef={nameRef} placeholder="Name *" name="Name" />
           </div>
           <div className="flex-child">
-            <input type="number" placeholder="Mobile Number *" className="signInControl"
-              ref={alterPhoneNoRef}
-              name="altphoneno"
-            />
+            <TextBox nameRef={alterPhoneNoRef} placeholder="Mobile Number *" name="Mobile" />
           </div>
         </div>
-        <div className="orderDetails">
+        <div className="addressDetails">
           <div className="flex-child">
-            <input type="number" placeholder="Pincode *" className="signInControl"
-              ref={pincodeRef}
-              name="pincode"
-            />
+            <TextBox nameRef={pincodeRef} placeholder="Pincode *" name="Pincode" />
           </div>
           <div className="flex-child">
-            <input type="text" placeholder="Locality / Area/ Street *" className="signInControl"
-              ref={locationRef}
-              name="locality" />
+            <TextBox nameRef={locationRef} placeholder="Locality / Area/ Street *" name="Locality / Area/ Street *" />
           </div>
         </div>
-        <div className="orderDetails">
+        <div className="addressDetails">
           <div className="flex-child">
-            <input
-              className="signInControl "
-              placeholder="Building name / Falt number *"
-              ref={addressRef}
-              name="address"
-            />
+            <TextBox nameRef={addressRef} placeholder="Building name / Flat number *" name="Building name / Flat number *" />
           </div>
           <div className="flex-child">
-            <input type="text" placeholder="City/District *"
-              ref={cityRef}
-              name="city"
-              className="signInControl" />
+            <TextBox nameRef={cityRef} placeholder="City/District *" name="City/District *" />
           </div>
         </div>
         {/* new  */}
-        <div className="orderDetails">
+        <div className="addressDetails">
           <div className="flex-child">
-            <input
-              className="signInControl "
-              placeholder="Landmark *"
-              ref={landmarkRef}
-              name="address"
-            />
+            <TextBox nameRef={landmarkRef} placeholder="Landmark *" name="Landmark *" />
           </div>
           <div className="flex-child">
-            <input type="text" placeholder="State *"
-              ref={stateRef}
-              name="city"
-              className="signInControl" />
+            <TextBox nameRef={stateRef} placeholder="State *" name="State *" />
           </div>
         </div>
-        <div className="orderDetails">
+        <div className="addressDetails">
           <div className="flex-child">
             <button className="cancelBtn" onClick={() => toggleAddressForm(false)} type="submit">Cancel</button>
           </div>
@@ -199,7 +166,7 @@ export const EditAddressDetails = ({ PriviousAddressValue, addressId, setAddress
   return (
     <>
       <div>
-        <div className="orderDetails">
+        <div className="addressDetails">
           <div className="flex-child">
             <input type="text" placeholder="Name *" className="signInControl"
               ref={nameRef}
@@ -213,7 +180,7 @@ export const EditAddressDetails = ({ PriviousAddressValue, addressId, setAddress
             />
           </div>
         </div>
-        <div className="orderDetails">
+        <div className="addressDetails">
           <div className="flex-child">
             <input type="number" placeholder="Pincode *" className="signInControl"
               ref={pincodeRef}
@@ -226,7 +193,7 @@ export const EditAddressDetails = ({ PriviousAddressValue, addressId, setAddress
               name="locality" />
           </div>
         </div>
-        <div className="orderDetails">
+        <div className="addressDetails">
           <div className="flex-child">
             <input
               className="signInControl "
@@ -243,7 +210,7 @@ export const EditAddressDetails = ({ PriviousAddressValue, addressId, setAddress
           </div>
         </div>
         {/* new  */}
-        <div className="orderDetails">
+        <div className="addressDetails">
           <div className="flex-child">
             <input
               className="signInControl "
@@ -259,7 +226,7 @@ export const EditAddressDetails = ({ PriviousAddressValue, addressId, setAddress
               className="signInControl" />
           </div>
         </div>
-        <div className="orderDetails">
+        <div className="addressDetails">
           <div className="flex-child">
             <button className="cancelBtn" type="submit" onClick={() => { setIsEditFormVisible(false) }}>Cancel</button>
           </div>
@@ -281,13 +248,11 @@ const ManageAddress = ({ changeAddressSelection, isAddressSelectionRequired, sel
     });
   }, []);
   return (
-    <>
-      <div className="orderContainer">
-        <div className={showAddressForm ? "cancel" : "orderDetails"}>
-          <div className="order_id font12" onClick={() => toggleAddressForm(!showAddressForm)}>
-            <b>
-              {showAddressForm ? ("") : (<span className="pointer"> <i className="fa fa-plus" aria-hidden="true" ></i>ADD A NEW ADDRESS</span>)}
-            </b>
+    <div className="addresses spacing">
+      <div className="addressContainer">
+        <div className={showAddressForm ? "cancel" : "addressDetails"}>
+          <div className="font12 pointer addressDetails" onClick={() => toggleAddressForm(!showAddressForm)}>
+            {showAddressForm ? ("") : (<> <i className="fa fa-plus" aria-hidden="true" /> <span>ADD NEW ADDRESS</span></>)}
           </div>
           {showAddressForm && <CreateNewAddress toggleAddressForm={toggleAddressForm} setAddress={setAddress} />}
         </div>
@@ -302,11 +267,15 @@ const ManageAddress = ({ changeAddressSelection, isAddressSelectionRequired, sel
             changeAddressSelection={changeAddressSelection}
             isAddressSelectionRequired={isAddressSelectionRequired}
             selectedAddressId={selectedAddressId}
+            toggleAddressForm={toggleAddressForm}
           />
         );
       }
       )}
-    </>
+
+      {/* 
+      {selectedAddressId == isEditFormVisible && <EditAddressDetails PriviousAddressValue={PriviousAddressValue} addressId={addressId} setAddress={setAddress} setIsEditFormVisible={setIsEditFormVisible} />} */}
+    </div>
   )
 }
 export default ManageAddress;

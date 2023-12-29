@@ -1,11 +1,19 @@
 .card-container {
   width: 100%;
-  padding: 20px 34px;
+  /* padding: 20px 34px; */
   flex-direction: row;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+
+  .VSVsP {
+    margin: 0px !important;
+
+  }
 }
+
+/* .card-container>div>div {
+} */
 
 .single-card {
   /* width: 100%; */
@@ -96,6 +104,7 @@ s {
   font-weight: 600;
   font-size: 13px;
   color: #333;
+  padding: 0% 3%;
   min-height: 72px;
   width: 100%;
   font-size: 16px;
@@ -143,9 +152,11 @@ s {
   margin-top: 25px !important;
   text-transform: uppercase;
 }
+
 .disabled {
   opacity: 0.3;
 }
+
 .checkOutBtn {
   font-size: 18px;
   letter-spacing: 0.2rem;
