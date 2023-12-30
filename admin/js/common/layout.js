@@ -1,5 +1,4 @@
-// console.log("tis is layout");
-// console.log(admin_id);
+
 var menu = [
 
     { "menuName": "Home", "id":"home", "class": "fa fa-home", "link":"adminHome.html"},

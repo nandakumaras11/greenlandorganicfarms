@@ -27,13 +27,7 @@ if(isset($_FILES['image']) && !empty($_FILES['image']) ){
  	$imageName=md5($encname).'.'.$imageType;
  $imagePath="./images/".$imageName;
  move_uploaded_file($_FILES["image"]["tmp_name"],$imagePath);
-// image code end 
-
-		// $gallery->category 			= $_POST['category'];
-		$gallery->image  				= $imageName;
-		// $gallery->description  		=    $_POST['description'];
-		// $gallery->caption  			=  $_POST['caption'];
-	
+		$gallery->image  				= $imageName;	
 		if($gallery->createGallery() == 1){
 			$res_arr = array("status" 	=> "success","message" 	=> "Successfully Inserted !!");
 		}

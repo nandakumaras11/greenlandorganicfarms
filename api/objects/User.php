@@ -110,7 +110,7 @@ class User
     //     } else {
     //         return [];
     //     }
-    // }
+    // }s
     // public function updateAddress()
     // {
     //     $query = "UPDATE " . $this->table_name . " SET address='".$this->address."' WHERE user_id='".$this->user_id."'";
