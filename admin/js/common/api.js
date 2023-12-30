@@ -216,9 +216,13 @@ $("#logoutBtn").click(function (e) {
     API('User/logout.php', {}, (result) => {
         if (result.status == 'success')
        { humanReadMsg("Successfuly Logout");
-        $("#logoutBtn").hide();}
-        else
+        $("#logoutBtn").hide();
+        checkAdminAuthentication();
+    }
+        else{
         humanReadMsg("Soeting Went Wrong! Try Again")
+        checkAdminAuthentication();
+    }
 
     })
 });
