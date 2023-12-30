@@ -209,14 +209,14 @@ $("#adminLogin").click(function (e) {
         window.location.replace(" https://greenlandorganicfarms.com/greennextAdmin/adminHome.html");
         else
         humanReadMsg(result.status);
-
     })
 });
 $("#logoutBtn").click(function (e) {
     e.preventDefault();
     API('User/logout.php', {}, (result) => {
         if (result.status == 'success')
-        humanReadMsg("Successfuly Logout")
+       { humanReadMsg("Successfuly Logout");
+        $("#logoutBtn").hide();}
         else
         humanReadMsg("Soeting Went Wrong! Try Again")
 
@@ -228,11 +228,15 @@ function checkAdminAuthentication() {
     API('User/isloginornot.php', {}, (result) => {
         console.log(result);
         if (result.status == "failed") {
-            window.location.replace(indexPage);
+            window.location.replace("http://localhost/greenlandorganicfarms/admin/index.html");
+            const admin_id=false;
+            $("#logoutBtn").hide()
         }
         else {
-            admin_id = result.message;
+           const admin_id = result.message;
+           menu.push({ "menuName": "Logout", "id":"logout", "class": "fa fa-image", "link":""})
             console.log(admin_id);
+            $("#logoutBtn").show()
         }
     })
 }
