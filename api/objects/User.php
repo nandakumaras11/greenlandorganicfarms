@@ -6,7 +6,7 @@ class User
     public $user_id;
     public $username;
     public $password;
-    public $address;
+    // public $address;
     public $phone_no;
     public $signInMobile;
     public $signInPassword;
@@ -22,8 +22,8 @@ class User
             return 2;
         } else {
             // return $this->isAlreadyExist();
-            $query = "INSERT INTO " . $this->table_name . "(user_id,username,password,address,phone_no) VALUES
-    ('','" . $this->username . "','" . $this->password . "','" . $this->address . "','" . $this->phone_no . "')";
+            $query = "INSERT INTO " . $this->table_name . "(user_id,username,password,phone_no) VALUES
+    ('','" . $this->username . "','" . $this->password . "','" . $this->phone_no . "')";
 
             $stmt = $this->conn->prepare($query);
 
