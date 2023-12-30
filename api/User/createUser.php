@@ -12,10 +12,10 @@ $data = json_decode(file_get_contents('php://input'), true);
 $newUser->username=$data['name'];
 $newUser->phone_no=$data['phone_no'];
 $newUser->password=md5($data['password']);
-if(empty($data['address']))
-$newUser->address="";
-else
-$newUser->address=$data['address'];
+// if(empty($data['address']))
+// $newUser->address="";
+// else
+// $newUser->address=$data['address'];
 $result=$newUser->insertUser();
   if($result==1){
    $res_arr = array("status"  => true,"message"  => "Successfully Registered !!","user_id"=>$newUser->user_id);
